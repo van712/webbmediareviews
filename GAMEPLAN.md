@@ -83,9 +83,9 @@ A Google review widget (Elfsight, Trustindex, etc.) wouldn't do this job. It loa
 
 | Client | Figure used | Source |
 |---|---|---|
-| Pristine | Monthly revenue 4x in 3 months; 575 leads at $14 | Nick's Google review; Ads Manager |
-| CAF | $8,114 of jobs in September; 109 leads at $11 | Sam's email (28 Sep); Ads Manager |
-| Richie's | Booked out 3 months ahead; $6.5K closed from the first $196 | Anthony's review; 16 Jul record |
+| Pristine | $50K a month on about $100 a day; revenue 4x in the first 3 months; 575 leads at $14 | Van (3 Nov; matches Oct spend in Ads Manager); Nick's review |
+| CAF | $12,288 of jobs from $1,200 in ads (10x); 109 leads | Sam's Aug, Sep and Oct revenue emails, totalled; Ads Manager spend |
+| Richie's | $50K lined up in month one; booked out 5 months ahead; $6.5K closed from the first $196 | Van (3 Nov); 16 Jul record |
 | Cleana | $115K revenue from the $21K "Ad Launch" campaign; 4,238 leads at $9.19 | 20 Oct record; campaign spend matches Ads Manager |
 | RKS | $92K of work from $6,101 total spend (15x); the $42K job came within the first $474 | 20 Oct record; Ads Manager |
 | Wild Landscape Co | $30K in the first week; $110K in the first 8 months | Results deck |
