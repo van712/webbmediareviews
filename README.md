@@ -60,8 +60,8 @@ Put them in `public/images/`, then run `python3 scripts/image-sizes.py` so pages
      | A | @ | `216.150.1.1` | 1 hour |
      | A | @ | `216.150.16.1` | 1 hour |
 
-   - **Edit** the existing `CNAME www` record. Change its value from `@` to `e56782a5b2f4879d.vercel-dns-017.com`.
+   - **Edit** the existing `CNAME www` record. Change its value from `@` to `9d3fb10ff2c303a0.vercel-dns-016.com`.
    - If **Forwarding** is turned on for the domain, turn it off.
 
-   These values come from Vercel's recommended config for this domain (3 Nov 2026). If Vercel's Domains page shows different values, use the ones it shows.
+   These values come from Vercel's recommended config for this domain (3 Nov 2026, for the webbmediareviews project). If Vercel's Domains page shows different values, use the ones it shows.
 4. **Google Search Console:** add the site and submit `https://webbmediareviews.com.au/sitemap-index.xml`.
