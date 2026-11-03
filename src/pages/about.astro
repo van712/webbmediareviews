@@ -1,0 +1,105 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import ReviewCard from "../components/ReviewCard.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { BUSINESS, SOCIALS } from "../data/site";
+import { reviewById, REVIEW_COUNT } from "../data/reviews";
+import { breadcrumbLd } from "../lib/schema";
+
+const crumbs = [{ name: "About Van", path: "/about/" }];
+const hogan = reviewById("hogan-radic")!;
+
+const person = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": BUSINESS.personId,
+    name: BUSINESS.founder,
+    jobTitle: "Founder",
+    worksFor: { "@id": BUSINESS.orgId },
+    url: `${BUSINESS.mainSite}/`,
+    image: "https://webbmediareviews.com.au/images/van-topham.jpeg",
+    sameAs: SOCIALS.map((s) => s.href),
+};
+---
+
+<Base
+    title="Van Topham Reviews | Founder of Webb Media"
+    description={`Who is Van Topham? Meet the founder of Webb Media, read what clients say about working with him, and see the results behind his ${REVIEW_COUNT} five-star Google reviews.`}
+    schema={[breadcrumbLd(crumbs), person]}
+>
+    <PageHero eyebrow="About" title="Van Topham, founder of Webb Media" crumbs={crumbs} />
+
+    <section class="section">
+        <div class="wrap about">
+            <img src="/images/van-topham.jpeg" alt="Van Topham, founder of Webb Media, working at his desk" width="698" height="698" />
+            <div class="prose">
+                <p class="lead">
+                    Van started Webb Media to help Australian tradies stop relying on word of mouth and get a steady flow of the jobs they actually want.
+                </p>
+                <p>
+                    Over the past 3+ years he's helped businesses get clients at scale using content and paid ads. Across his own brands and client campaigns he's driven
+                    150+ million views and built ad systems that have brought in thousands of extra jobs.
+                </p>
+                <p>
+                    Today Webb Media runs Facebook and Instagram ads, builds websites that rank on Google, and sets up lead follow-up for tradies and home service businesses
+                    across Australia. Clients deal with Van directly, from the first call to the day their calendar's full. That comes up in the reviews more than anything else.
+                </p>
+                <h2>How Van works</h2>
+                <ul>
+                    <li>He runs every account himself. There's no junior handling it behind the scenes.</li>
+                    <li>Weekly updates in plain English, not a report you never read.</li>
+                    <li>Results are measured on jobs booked, not clicks or likes.</li>
+                    <li>Every lead gets a text back straight away, so it doesn't go cold while you're on the tools.</li>
+                </ul>
+                <div class="btn-row">
+                    <a class="btn btn-primary" href={BUSINESS.mainSite}>Visit webbmedia.com.au</a>
+                    <a class="btn btn-ghost" href="/reviews/">Read Van's reviews</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="wrap narrow">
+            <div class="section-head">
+                <span class="eyebrow">In a client's words</span>
+                <h2>"I first heard of Van when he was cold calling as a 17 year old"</h2>
+            </div>
+            <ReviewCard review={hogan} />
+        </div>
+    </section>
+
+    <CtaBand />
+</Base>
+
+<style>
+    .about {
+        display: grid;
+        grid-template-columns: 1fr 1.3fr;
+        gap: clamp(32px, 5vw, 64px);
+        align-items: start;
+    }
+    .about img {
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        width: 100%;
+    }
+    @media (max-width: 860px) {
+        .about {
+            grid-template-columns: 1fr;
+        }
+    }
+    .btn-row {
+        margin-top: 28px;
+    }
+    .prose .btn {
+        color: #fff;
+    }
+    .prose .btn-ghost {
+        color: var(--text);
+    }
+    .narrow {
+        max-width: 820px;
+    }
+</style>

@@ -1,0 +1,18 @@
+---
+import ReviewsListing from "../../components/ReviewsListing.astro";
+import { REVIEWS, REVIEW_COUNT } from "../../data/reviews";
+import { CASE_STUDIES } from "../../data/case-studies";
+
+const withReviews = CASE_STUDIES.filter((c) => c.reviewId);
+---
+
+<ReviewsListing
+    title={`All Webb Media Reviews (${REVIEW_COUNT} × 5-Star Google Reviews)`}
+    description={`Every Webb Media Google review in one place: ${REVIEW_COUNT} five-star reviews from tradies and business owners about Van Topham's Facebook ads, websites and coaching.`}
+    h1="Every Webb Media review, in one place"
+    lead="All of Webb Media's Google reviews, unedited. Filter by service, or click through to see the results behind a review."
+    crumbs={[{ name: "Reviews", path: "/reviews/" }]}
+    reviews={REVIEWS}
+    cases={withReviews}
+    casesTitle="The results behind these reviews"
+/>

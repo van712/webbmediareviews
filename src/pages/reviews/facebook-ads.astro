@@ -1,0 +1,22 @@
+---
+import ReviewsListing from "../../components/ReviewsListing.astro";
+import { reviewsFor } from "../../data/reviews";
+import { CASE_STUDIES } from "../../data/case-studies";
+
+const reviews = reviewsFor("facebook-ads");
+const cases = CASE_STUDIES.filter((c) => c.service === "facebook-ads");
+---
+
+<ReviewsListing
+    title="Webb Media Facebook Ads Reviews | Meta Ads Results for Tradies"
+    description={`${reviews.length} five-star reviews of Webb Media's Facebook and Instagram ads, plus ${cases.length} case studies with real Ads Manager results for Australian tradies.`}
+    h1="Webb Media Facebook ads reviews"
+    lead="What clients say about Webb Media's Facebook and Instagram (Meta) ads: the leads, the ad creative and what it's like working with Van."
+    crumbs={[
+        { name: "Reviews", path: "/reviews/" },
+        { name: "Facebook ads", path: "/reviews/facebook-ads/" },
+    ]}
+    reviews={reviews}
+    cases={cases}
+    casesTitle="Facebook ads results"
+/>

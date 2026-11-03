@@ -1,0 +1,96 @@
+---
+import type { CaseStudy } from "../data/case-studies";
+import { sizeOf } from "../lib/images";
+interface Props {
+    study: CaseStudy;
+}
+const { study } = Astro.props;
+---
+
+<a class="card case" href={`/case-studies/${study.slug}/`}>
+    <div class="head">
+        {study.logo ? <img class="logo" src={study.logo} alt="" width="44" height="44" loading="lazy" /> : <span class="logo ph" aria-hidden="true">{study.company[0]}</span>}
+        <div>
+            <span class="company">{study.company}</span>
+            <span class="industry">{study.industry} · {study.service === "facebook-ads" ? "Facebook ads" : "Website"}</span>
+        </div>
+    </div>
+    <span class="stat">{study.stat}</span>
+    <h3>{study.headline}</h3>
+    {study.siteImage && <img class="shot" src={study.siteImage} alt={`${study.company} website by Webb Media`} loading="lazy" {...sizeOf(study.siteImage)} />}
+    <span class="more">Read the case study →</span>
+</a>
+
+<style>
+    .case {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        text-decoration: none;
+        transition: border-color 0.15s, transform 0.15s;
+    }
+    .case:hover {
+        border-color: rgb(221 40 40 / 0.5);
+        transform: translateY(-2px);
+    }
+    .head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .logo {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        object-fit: cover;
+        background: #fff;
+        flex-shrink: 0;
+    }
+    .ph {
+        display: grid;
+        place-items: center;
+        background: var(--red-soft);
+        color: #fca5a5;
+        font-weight: 800;
+    }
+    .company {
+        display: block;
+        font-weight: 700;
+    }
+    .industry {
+        display: block;
+        font-size: 0.82rem;
+        color: var(--muted);
+    }
+    .stat {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--red);
+        letter-spacing: -0.02em;
+        line-height: 1;
+        margin-top: 6px;
+    }
+    h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #e4e4e7;
+    }
+    .shot {
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        object-position: top;
+        width: 100%;
+    }
+    .more {
+        margin-top: auto;
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 0.92rem;
+    }
+    .case:hover .more {
+        color: var(--text);
+    }
+</style>

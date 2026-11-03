@@ -1,0 +1,22 @@
+---
+import ReviewsListing from "../../components/ReviewsListing.astro";
+import { reviewsFor } from "../../data/reviews";
+import { CASE_STUDIES } from "../../data/case-studies";
+
+const reviews = reviewsFor("websites");
+const cases = CASE_STUDIES.filter((c) => c.service === "websites");
+---
+
+<ReviewsListing
+    title="Webb Media Website Design Reviews | Web Design for Tradies"
+    description={`${reviews.length} five-star reviews of websites built by Webb Media, plus case studies showing Google rankings and revenue from new tradie websites.`}
+    h1="Webb Media website design reviews"
+    lead="Reviews from business owners who had their website designed and built by Webb Media, and the results those sites have brought in."
+    crumbs={[
+        { name: "Reviews", path: "/reviews/" },
+        { name: "Website design", path: "/reviews/website-design/" },
+    ]}
+    reviews={reviews}
+    cases={cases}
+    casesTitle="Website results"
+/>

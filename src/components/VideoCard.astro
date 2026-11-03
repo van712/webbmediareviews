@@ -1,0 +1,112 @@
+---
+/**
+ * YouTube Short behind a click-to-play facade: only the thumbnail loads until
+ * someone presses play, so the page stays fast.
+ */
+interface Props {
+    youtubeId: string;
+    title: string;
+    company: string;
+    client: string;
+    stat?: string;
+    href?: string;
+}
+const { youtubeId, title, company, client, stat, href } = Astro.props;
+---
+
+<article class="card video">
+    <button class="facade" type="button" data-yt={youtubeId} aria-label={`Play ${client} from ${company}'s video testimonial`}>
+        <img src={`https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`} alt={`${client} from ${company} talking about Webb Media`} width="480" height="360" loading="lazy" />
+        <span class="play" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"></path></svg>
+        </span>
+    </button>
+    <div class="body">
+        {stat && <span class="chip chip-red">{stat}</span>}
+        <h3>{title}</h3>
+        <p class="muted">{client}, {company}</p>
+        {href && <a class="link" href={href}>Read the case study →</a>}
+    </div>
+</article>
+
+<style>
+    .video {
+        padding: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    .facade {
+        position: relative;
+        display: block;
+        width: 100%;
+        aspect-ratio: 9 / 16;
+        max-height: 520px;
+        border: 0;
+        padding: 0;
+        background: #000;
+        cursor: pointer;
+        overflow: hidden;
+    }
+    .facade img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.85;
+    }
+    .facade:hover img {
+        opacity: 1;
+    }
+    .play {
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: var(--red);
+        box-shadow: 0 10px 30px rgb(0 0 0 / 0.5);
+    }
+    .facade :global(iframe) {
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+    .body {
+        padding: 20px 22px 24px;
+    }
+    .body h3 {
+        margin: 12px 0 6px;
+    }
+    .body p {
+        margin: 0;
+        font-size: 0.92rem;
+    }
+    .link {
+        display: inline-block;
+        margin-top: 12px;
+        color: #fca5a5;
+        font-weight: 600;
+        font-size: 0.92rem;
+        text-decoration: none;
+    }
+</style>
+
+<script>
+    document.querySelectorAll<HTMLButtonElement>(".facade[data-yt]").forEach((btn) => {
+        btn.addEventListener(
+            "click",
+            () => {
+                const iframe = document.createElement("iframe");
+                iframe.src = `https://www.youtube-nocookie.com/embed/${btn.dataset.yt}?autoplay=1&playsinline=1`;
+                iframe.title = btn.getAttribute("aria-label") ?? "Video testimonial";
+                iframe.allow = "autoplay; encrypted-media; picture-in-picture";
+                iframe.allowFullscreen = true;
+                btn.replaceChildren(iframe);
+            },
+            { once: true },
+        );
+    });
+</script>

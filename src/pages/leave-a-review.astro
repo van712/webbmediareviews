@@ -1,0 +1,28 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import { GOOGLE_WRITE_REVIEW_URL } from "../data/site";
+---
+
+<Base title="Leave Webb Media a Review" description="Worked with Webb Media? Leave a Google review in about a minute." noindex>
+    <PageHero eyebrow="Thank you" title="Worked with Webb Media? Leave a review" lead="It takes about a minute and it genuinely helps. A few things that make a review useful to other business owners:">
+        <ul class="tips">
+            <li>Your trade and where you're based (e.g. "pressure washing on the Sunshine Coast")</li>
+            <li>What Webb Media did for you: ads, a website, or both</li>
+            <li>A result, if you're happy to share one (leads, jobs booked, revenue)</li>
+        </ul>
+        <a class="btn btn-primary" href={GOOGLE_WRITE_REVIEW_URL} target="_blank" rel="noopener">Leave a Google review</a>
+    </PageHero>
+</Base>
+
+<style>
+    .tips {
+        color: var(--muted);
+        margin: 0 0 28px;
+        padding-left: 1.2em;
+        max-width: 60ch;
+    }
+    .tips li {
+        margin-bottom: 6px;
+    }
+</style>

@@ -1,0 +1,90 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import CtaBand from "../components/CtaBand.astro";
+import Faq from "../components/Faq.astro";
+import { BUSINESS, GOOGLE_REVIEWS_URL, SOCIALS, REVIEWS_LAST_SYNCED } from "../data/site";
+import { REVIEW_COUNT } from "../data/reviews";
+import { CASE_STUDIES } from "../data/case-studies";
+import { breadcrumbLd, faqLd } from "../lib/schema";
+
+const crumbs = [{ name: "Is Webb Media legit?", path: "/is-webb-media-legit/" }];
+const faq = [
+    {
+        q: "Is Webb Media a real, registered business?",
+        a: `Yes. Webb Media is an Australian business with ABN ${BUSINESS.abn}. You can look it up on the <a href="https://abr.business.gov.au/" target="_blank" rel="noopener">Australian Business Register</a>.`,
+    },
+    {
+        q: "Are the reviews real?",
+        a: `Yes. All ${REVIEW_COUNT} written reviews on this site are copied word for word from Webb Media's public Google Business Profile, last synced ${REVIEWS_LAST_SYNCED}. You can <a href="${GOOGLE_REVIEWS_URL}" target="_blank" rel="noopener">read them on Google</a> yourself.`,
+    },
+    {
+        q: "Can I talk to Van before I commit to anything?",
+        a: `Yes. Book a free 15 minute call at <a href="${BUSINESS.mainSite}">webbmedia.com.au</a>, call ${BUSINESS.phone} or email <a href="${BUSINESS.emailHref}">${BUSINESS.email}</a>. You'll speak with Van directly.`,
+    },
+    {
+        q: "Can I see proof of results?",
+        a: `Each of the <a href="/case-studies/">${CASE_STUDIES.length} case studies</a> shows the ad spend, the revenue and screenshots from Meta Ads Manager or the client's own messages. Several clients have also recorded <a href="/video-testimonials/">video testimonials</a>.`,
+    },
+];
+---
+
+<Base
+    title="Is Webb Media Legit? Reviews, ABN & Proof"
+    description={`Is Webb Media legit? Check the facts: registered Australian business (ABN ${BUSINESS.abn}), ${REVIEW_COUNT} five-star Google reviews, video testimonials and real client results.`}
+    schema={[breadcrumbLd(crumbs), faqLd(faq)]}
+>
+    <PageHero
+        eyebrow="Do your homework"
+        title="Is Webb Media legit?"
+        lead="Fair question to ask before you hand anyone your marketing. Here's everything you can check for yourself, without taking our word for it."
+        crumbs={crumbs}
+    />
+
+    <section class="section">
+        <div class="wrap">
+            <div class="grid grid-2 checks">
+                <div class="card">
+                    <h2>Registered Australian business</h2>
+                    <p class="muted">ABN {BUSINESS.abn}. Run by founder {BUSINESS.founder}, servicing the Gold Coast, Sunshine Coast, Brisbane and clients Australia-wide.</p>
+                </div>
+                <div class="card">
+                    <h2>{REVIEW_COUNT} public Google reviews</h2>
+                    <p class="muted">All five stars, all from named clients. <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener">Check them on Google</a> or <a href="/reviews/">read them here</a>.</p>
+                </div>
+                <div class="card">
+                    <h2>Results with screenshots</h2>
+                    <p class="muted">{CASE_STUDIES.length} case studies with the spend, the revenue and the proof. <a href="/case-studies/">See the results</a>.</p>
+                </div>
+                <div class="card">
+                    <h2>A real person you can call</h2>
+                    <p class="muted">
+                        <a href={BUSINESS.phoneHref}>{BUSINESS.phone}</a> · <a href={BUSINESS.emailHref}>{BUSINESS.email}</a>. Follow along on
+                        {SOCIALS.map((s, i) => <>{i > 0 && ", "}<a href={s.href} target="_blank" rel="noopener">{s.label}</a></>)}.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="wrap">
+            <div class="section-head"><h2>Common questions</h2></div>
+            <Faq items={faq} />
+        </div>
+    </section>
+
+    <CtaBand title="Still unsure? Talk to Van." />
+</Base>
+
+<style>
+    .checks h2 {
+        font-size: 1.35rem;
+    }
+    .checks a {
+        color: var(--text);
+    }
+    .checks p {
+        margin: 0;
+    }
+</style>

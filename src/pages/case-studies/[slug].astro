@@ -1,0 +1,232 @@
+---
+import Base from "../../layouts/Base.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import ReviewCard from "../../components/ReviewCard.astro";
+import VideoCard from "../../components/VideoCard.astro";
+import CaseCard from "../../components/CaseCard.astro";
+import CtaBand from "../../components/CtaBand.astro";
+import { CASE_STUDIES, type CaseStudy } from "../../data/case-studies";
+import { reviewById } from "../../data/reviews";
+import { breadcrumbLd } from "../../lib/schema";
+import { sizeOf } from "../../lib/images";
+
+export function getStaticPaths() {
+    return CASE_STUDIES.map((study) => ({ params: { slug: study.slug }, props: { study } }));
+}
+
+const { study } = Astro.props as { study: CaseStudy };
+const review = study.reviewId ? reviewById(study.reviewId) : undefined;
+const related = CASE_STUDIES.filter((c) => c.slug !== study.slug && c.service === study.service).slice(0, 3);
+const serviceLabel = study.service === "facebook-ads" ? "Facebook ads" : "Website";
+const crumbs = [
+    { name: "Client results", path: "/case-studies/" },
+    { name: study.company, path: `/case-studies/${study.slug}/` },
+];
+const title = review ? `${study.company} Review & Results | Webb Media` : `${study.company} Results | Webb Media Case Study`;
+const description = `${study.description} Read how Webb Media did it${review ? `, and ${review.name.split(" ")[0]}'s 5-star review` : ""}.`;
+---
+
+<Base title={title} description={description} schema={[breadcrumbLd(crumbs)]}>
+    <section class="hero">
+        <div class="wrap">
+            <Breadcrumbs crumbs={crumbs} />
+            <div class="head">
+                {study.logo && <img class="logo" src={study.logo} alt={`${study.company} logo`} width="64" height="64" />}
+                <div>
+                    <span class="eyebrow">{study.industry} · {serviceLabel} case study</span>
+                    <h1>{study.company}: {study.headline}</h1>
+                </div>
+            </div>
+            <p class="lead">{study.description}</p>
+            <div class="metrics">
+                {
+                    study.metrics.map((m) => (
+                        <div class="metric">
+                            <span class="v">{m.value}</span>
+                            <span class="l">{m.label}</span>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="wrap body">
+            <div class="prose">
+                <h2>What Webb Media did</h2>
+                <p>{study.whatWasDone}</p>
+                <h2>The results</h2>
+                <ul>{study.highlights.map((h) => <li>{h}</li>)}</ul>
+                {
+                    study.siteUrl && (
+                        <p>
+                            See the live site: <a href={study.siteUrl} target="_blank" rel="noopener">{new URL(study.siteUrl).hostname.replace(/^www\./, "")}</a>
+                        </p>
+                    )
+                }
+                <p class="muted small">
+                    Full write-up on the Webb Media site: <a href={study.mainSiteUrl}>{study.company} case study</a>.
+                </p>
+            </div>
+            <aside class="side">
+                {review && (
+                    <>
+                        <h2 class="side-h">{review.name.split(" ")[0]}'s Google review</h2>
+                        <ReviewCard review={review} showCaseLink={false} />
+                    </>
+                )}
+                {study.video?.youtubeId && (
+                    <>
+                        <h2 class="side-h">Video testimonial</h2>
+                        <VideoCard youtubeId={study.video.youtubeId} title={study.headline} company={study.company} client={study.client} />
+                    </>
+                )}
+                {study.video && !study.video.youtubeId && (
+                    <a class="card ig" href={study.video.url} target="_blank" rel="noopener">
+                        <strong>Watch {study.client}'s video on {study.video.platform} →</strong>
+                    </a>
+                )}
+            </aside>
+        </div>
+    </section>
+
+    {
+        (study.proof.length > 0 || study.siteImage) && (
+            <section class="section">
+                <div class="wrap">
+                    <div class="section-head">
+                        <span class="eyebrow">Proof</span>
+                        <h2>The screenshots</h2>
+                        <p class="lead">Straight from {study.service === "facebook-ads" ? "Meta Ads Manager and the client's messages" : "the live site and its analytics"}.</p>
+                    </div>
+                    <div class="proof">
+                        {study.siteImage && (
+                            <img src={study.siteImage} alt={`${study.company} website designed by Webb Media`} loading="lazy" {...sizeOf(study.siteImage)} />
+                        )}
+                        {study.proof.map((p) => (
+                            <img class={p.src.includes("messages-") ? "msg" : "light"} src={p.src} alt={p.alt} loading="lazy" {...sizeOf(p.src)} />
+                        ))}
+                    </div>
+                </div>
+            </section>
+        )
+    }
+
+    {
+        related.length > 0 && (
+            <section class="section">
+                <div class="wrap">
+                    <div class="section-head">
+                        <h2>More {serviceLabel.toLowerCase()} results</h2>
+                    </div>
+                    <div class="grid grid-3">
+                        {related.map((c) => (
+                            <CaseCard study={c} />
+                        ))}
+                    </div>
+                </div>
+            </section>
+        )
+    }
+
+    <CtaBand />
+</Base>
+
+<style>
+    .hero {
+        padding-block: clamp(40px, 7vw, 84px) clamp(32px, 5vw, 56px);
+        background: radial-gradient(70% 90% at 50% -20%, rgb(221 40 40 / 0.16), transparent 70%);
+        border-bottom: 1px solid var(--border);
+    }
+    .head {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+    }
+    .logo {
+        width: 64px;
+        height: 64px;
+        border-radius: 14px;
+        background: #fff;
+        object-fit: cover;
+        flex-shrink: 0;
+        margin-top: 6px;
+    }
+    h1 {
+        font-size: clamp(2rem, 4.5vw, 3.2rem);
+        max-width: 24ch;
+    }
+    .metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr));
+        gap: 14px;
+        margin-top: 28px;
+    }
+    .metric {
+        border: 1px solid var(--border);
+        background: var(--surface);
+        border-radius: 14px;
+        padding: 16px 18px;
+    }
+    .metric .v {
+        display: block;
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--red);
+        line-height: 1.1;
+    }
+    .metric .l {
+        color: var(--muted);
+        font-size: 0.88rem;
+    }
+    .body {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr;
+        gap: clamp(32px, 5vw, 64px);
+        align-items: start;
+    }
+    @media (max-width: 900px) {
+        .body {
+            grid-template-columns: 1fr;
+        }
+    }
+    .prose h2:first-child {
+        margin-top: 0;
+    }
+    .small {
+        font-size: 0.9rem;
+    }
+    .side {
+        display: grid;
+        gap: 16px;
+    }
+    .side-h {
+        font-size: 1rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--subtle);
+        margin: 0;
+    }
+    .side :global(.video) {
+        max-width: 340px;
+    }
+    .ig {
+        text-decoration: none;
+    }
+    .proof {
+        display: grid;
+        gap: 20px;
+    }
+    .proof img {
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        width: 100%;
+    }
+    .proof img.light {
+        background: #fff;
+    }
+    .proof img.msg {
+        max-width: 560px;
+    }
+</style>

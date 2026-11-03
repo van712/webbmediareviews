@@ -1,0 +1,53 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import VideoCard from "../components/VideoCard.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { VIDEO_TESTIMONIALS, CASE_STUDIES } from "../data/case-studies";
+import { breadcrumbLd } from "../lib/schema";
+
+const crumbs = [{ name: "Video testimonials", path: "/video-testimonials/" }];
+const instagram = CASE_STUDIES.filter((c) => c.video && !c.video.youtubeId);
+---
+
+<Base
+    title="Webb Media Video Testimonials | Clients on Camera"
+    description="Watch Webb Media video testimonials from pressure washing and painting business owners talking about the leads and revenue from their Facebook ads."
+    schema={[breadcrumbLd(crumbs)]}
+>
+    <PageHero
+        eyebrow="Video testimonials"
+        title="Webb Media video testimonials"
+        lead="Business owners on camera, in their own words, talking about what changed after they started working with Van."
+        crumbs={crumbs}
+    />
+    <section class="section">
+        <div class="wrap">
+            <div class="grid grid-4">
+                {VIDEO_TESTIMONIALS.map((v) => <VideoCard youtubeId={v.youtubeId} title={v.headline} company={v.company} client={v.client} stat={v.stat} href={`/case-studies/${v.slug}/`} />)}
+            </div>
+            {
+                instagram.length > 0 && (
+                    <p class="muted more">
+                        More on Instagram:{" "}
+                        {instagram.map((c) => (
+                            <a href={c.video!.url} target="_blank" rel="noopener">
+                                {c.client} from {c.company}
+                            </a>
+                        ))}
+                    </p>
+                )
+            }
+        </div>
+    </section>
+    <CtaBand />
+</Base>
+
+<style>
+    .more {
+        margin-top: 32px;
+    }
+    .more a {
+        color: var(--text);
+    }
+</style>

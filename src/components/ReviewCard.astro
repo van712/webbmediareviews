@@ -1,0 +1,120 @@
+---
+import Stars from "./Stars.astro";
+import GoogleMark from "./GoogleMark.astro";
+import { GOOGLE_REVIEWS_URL } from "../data/site";
+import { SERVICE_LABELS, type Review } from "../data/reviews";
+
+interface Props {
+    review: Review;
+    /** Render as an anchor target (used on /reviews/). */
+    anchor?: boolean;
+    showCaseLink?: boolean;
+}
+const { review, anchor = false, showCaseLink = true } = Astro.props;
+const initials = review.name
+    .split(/[\s,]+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((p) => p[0]!.toUpperCase())
+    .join("");
+---
+
+<article class="card review" id={anchor ? review.id : undefined}>
+    <div class="top">
+        <Stars rating={review.rating} />
+        <a class="src" href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener" aria-label={`${review.name}'s review on Google`}>
+            <GoogleMark size={16} /> Google
+        </a>
+    </div>
+    <blockquote>
+        <p>{review.text}</p>
+    </blockquote>
+    <footer>
+        <span class="avatar" aria-hidden="true">{initials}</span>
+        <div>
+            <cite>{review.name}</cite>
+            {review.business && <span class="biz">{review.business}</span>}
+        </div>
+    </footer>
+    {
+        (review.services.length > 0 || (showCaseLink && review.caseStudy)) && (
+            <div class="tags">
+                {review.services.map((s) => (
+                    <span class="chip">{SERVICE_LABELS[s]}</span>
+                ))}
+                {showCaseLink && review.caseStudy && (
+                    <a class="chip chip-red" href={`/case-studies/${review.caseStudy}/`}>
+                        See the results →
+                    </a>
+                )}
+            </div>
+        )
+    }
+</article>
+
+<style>
+    .review {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        scroll-margin-top: 90px;
+    }
+    .review:target {
+        border-color: var(--red);
+    }
+    .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .src {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.8rem;
+        color: var(--subtle);
+        text-decoration: none;
+    }
+    .src:hover {
+        color: var(--text);
+    }
+    blockquote {
+        margin: 0;
+    }
+    blockquote p {
+        margin: 0;
+        color: #e4e4e7;
+    }
+    footer {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .avatar {
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--red-soft);
+        color: #fca5a5;
+        font-weight: 800;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+    }
+    cite {
+        display: block;
+        font-style: normal;
+        font-weight: 700;
+    }
+    .biz {
+        display: block;
+        font-size: 0.85rem;
+        color: var(--muted);
+    }
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+</style>

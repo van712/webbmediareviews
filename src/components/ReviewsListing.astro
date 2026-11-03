@@ -1,0 +1,102 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "./PageHero.astro";
+import RatingBadge from "./RatingBadge.astro";
+import ReviewCard from "./ReviewCard.astro";
+import CaseCard from "./CaseCard.astro";
+import CtaBand from "./CtaBand.astro";
+import type { Review } from "../data/reviews";
+import type { CaseStudy } from "../data/case-studies";
+import { breadcrumbLd } from "../lib/schema";
+import { REVIEWS_LAST_SYNCED, GOOGLE_REVIEWS_URL } from "../data/site";
+
+interface Props {
+    title: string;
+    description: string;
+    h1: string;
+    lead: string;
+    crumbs: { name: string; path: string }[];
+    reviews: Review[];
+    cases?: CaseStudy[];
+    casesTitle?: string;
+}
+const { title, description, h1, lead, crumbs, reviews, cases = [], casesTitle = "Results from these clients" } = Astro.props;
+const path = Astro.url.pathname;
+---
+
+<Base title={title} description={description} schema={[breadcrumbLd(crumbs)]}>
+    <PageHero eyebrow="Webb Media reviews" title={h1} lead={lead} crumbs={crumbs}>
+        <div class="hero-row">
+            <RatingBadge />
+            <nav class="filters" aria-label="Filter reviews">
+                <a class="chip" href="/reviews/" aria-current={path === "/reviews/" ? "page" : undefined}>All reviews</a>
+                <a class="chip" href="/reviews/facebook-ads/" aria-current={path === "/reviews/facebook-ads/" ? "page" : undefined}>Facebook ads</a>
+                <a class="chip" href="/reviews/website-design/" aria-current={path === "/reviews/website-design/" ? "page" : undefined}>Website design</a>
+            </nav>
+        </div>
+    </PageHero>
+
+    <section class="section">
+        <div class="wrap">
+            <p class="muted note">
+                Showing {reviews.length} review{reviews.length === 1 ? "" : "s"}. Copied word for word from Google, last synced {REVIEWS_LAST_SYNCED}.
+                <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener">See them on Google</a>.
+            </p>
+            <div class="review-wall">
+                {reviews.map((review) => <ReviewCard review={review} anchor />)}
+            </div>
+            <slot />
+        </div>
+    </section>
+
+    {
+        cases.length > 0 && (
+            <section class="section">
+                <div class="wrap">
+                    <div class="section-head">
+                        <span class="eyebrow">Case studies</span>
+                        <h2>{casesTitle}</h2>
+                    </div>
+                    <div class="grid grid-3">
+                        {cases.map((study) => (
+                            <CaseCard study={study} />
+                        ))}
+                    </div>
+                </div>
+            </section>
+        )
+    }
+
+    <CtaBand />
+</Base>
+
+<style>
+    .hero-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+        margin-top: 24px;
+    }
+    .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .filters .chip {
+        padding: 8px 14px;
+        font-size: 0.88rem;
+    }
+    .filters .chip[aria-current="page"] {
+        color: #fff;
+        border-color: var(--red);
+        background: var(--red-soft);
+    }
+    .note {
+        font-size: 0.9rem;
+        margin-bottom: 28px;
+    }
+    .note a {
+        color: var(--text);
+    }
+</style>

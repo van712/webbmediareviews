@@ -1,0 +1,255 @@
+---
+import Base from "../layouts/Base.astro";
+import RatingBadge from "../components/RatingBadge.astro";
+import ReviewCard from "../components/ReviewCard.astro";
+import CaseCard from "../components/CaseCard.astro";
+import VideoCard from "../components/VideoCard.astro";
+import Faq from "../components/Faq.astro";
+import CtaBand from "../components/CtaBand.astro";
+import Stars from "../components/Stars.astro";
+import { REVIEWS, REVIEW_COUNT, THEMES, reviewById } from "../data/reviews";
+import { CASE_STUDIES, FEATURED_CASE_SLUGS, VIDEO_TESTIMONIALS, caseStudyBySlug } from "../data/case-studies";
+import { HOME_FAQ } from "../data/faq";
+import { faqLd } from "../lib/schema";
+
+const featuredReviews = REVIEWS.filter((r) => r.featured);
+const featuredCases = FEATURED_CASE_SLUGS.map((s) => caseStudyBySlug(s)!);
+const hero = reviewById("louie-smeulders")!;
+
+const stats = [
+    { value: "88.6x", label: "return on ad spend for RKS Renovations" },
+    { value: "$30K/mo", label: "added revenue for Pristine Pressure Washing" },
+    { value: "$1.1M", label: "in quotes from BrisBathCo's new website" },
+    { value: `${REVIEW_COUNT} × 5★`, label: "Google reviews, every one five stars" },
+];
+---
+
+<Base
+    title="Webb Media Reviews | 5-Star Client Reviews, Testimonials & Results"
+    description={`Read ${REVIEW_COUNT} five-star Webb Media reviews from Australian tradies, plus video testimonials and real results from Facebook ads and websites built by Van Topham.`}
+    schema={[faqLd(HOME_FAQ)]}
+>
+    <section class="hero">
+        <div class="wrap hero-grid">
+            <div>
+                <span class="eyebrow">Reviews &amp; testimonials</span>
+                <h1>Webb Media Reviews</h1>
+                <p class="lead">
+                    What Australian tradies and business owners say after working with Webb Media and Van Topham. Every review is real, public and copied word for word
+                    from Google.
+                </p>
+                <RatingBadge />
+                <div class="btn-row cta">
+                    <a class="btn btn-primary" href="/reviews/">Read all {REVIEW_COUNT} reviews</a>
+                    <a class="btn btn-ghost" href="/case-studies/">See client results</a>
+                </div>
+            </div>
+            <figure class="card hero-quote">
+                <Stars size={22} />
+                <blockquote>“{hero.text.split(", if your")[0]}…”</blockquote>
+                <figcaption>
+                    <strong>{hero.name}</strong>
+                    <span class="muted">{hero.business}</span>
+                </figcaption>
+                <a class="chip chip-red" href={`/case-studies/${hero.caseStudy}/`}>Booked out in 2 weeks →</a>
+            </figure>
+        </div>
+    </section>
+
+    <section class="stats-strip" aria-label="Client results at a glance">
+        <div class="wrap grid grid-4">
+            {
+                stats.map((s) => (
+                    <div class="stat">
+                        <span class="v">{s.value}</span>
+                        <span class="l">{s.label}</span>
+                    </div>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="section" id="reviews">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Google reviews</span>
+                <h2>What clients say about Webb Media</h2>
+                <p class="lead">Unedited reviews from painters, pressure washers, detailers, renovators and other business owners Webb Media has worked with.</p>
+            </div>
+            <div class="review-wall">
+                {featuredReviews.map((review) => <ReviewCard review={review} />)}
+            </div>
+            <div class="btn-row center">
+                <a class="btn btn-ghost" href="/reviews/">See all {REVIEW_COUNT} Webb Media reviews</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="videos">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Video testimonials</span>
+                <h2>Hear it from the clients</h2>
+                <p class="lead">Short videos from business owners talking about what changed after they started working with Van.</p>
+            </div>
+            <div class="grid grid-4">
+                {
+                    VIDEO_TESTIMONIALS.map((v) => (
+                        <VideoCard youtubeId={v.youtubeId} title={v.headline} company={v.company} client={v.client} stat={v.stat} href={`/case-studies/${v.slug}/`} />
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="results">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Client results</span>
+                <h2>The numbers behind the reviews</h2>
+                <p class="lead">Ad spend in, revenue out. Each case study shows what Webb Media did and the proof behind the result.</p>
+            </div>
+            <div class="grid grid-3">
+                {featuredCases.map((study) => <CaseCard study={study} />)}
+            </div>
+            <div class="btn-row center">
+                <a class="btn btn-ghost" href="/case-studies/">See all {CASE_STUDIES.length} case studies</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="why">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Why clients rate Webb Media</span>
+                <h2>The same four things come up again and again</h2>
+            </div>
+            <div class="grid grid-2">
+                {
+                    THEMES.map((theme) => (
+                        <div class="card theme">
+                            <h3>{theme.title}</h3>
+                            <p class="muted">{theme.body}</p>
+                            {theme.quotes.map((q) => {
+                                const r = reviewById(q.reviewId)!;
+                                return (
+                                    <blockquote>
+                                        “{q.text}”
+                                        <cite>
+                                            <a href={`/reviews/#${r.id}`}>{r.name}</a>
+                                        </cite>
+                                    </blockquote>
+                                );
+                            })}
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="faq">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">FAQ</span>
+                <h2>Questions people ask about Webb Media</h2>
+            </div>
+            <Faq items={HOME_FAQ} />
+        </div>
+    </section>
+
+    <CtaBand />
+</Base>
+
+<style>
+    .hero {
+        padding-block: clamp(48px, 8vw, 100px);
+        background:
+            radial-gradient(60% 80% at 85% 10%, rgb(221 40 40 / 0.18), transparent 70%),
+            radial-gradient(50% 60% at 0% 100%, rgb(221 40 40 / 0.08), transparent 70%);
+    }
+    .hero-grid {
+        display: grid;
+        grid-template-columns: 1.25fr 1fr;
+        gap: clamp(32px, 5vw, 64px);
+        align-items: center;
+    }
+    @media (max-width: 900px) {
+        .hero-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    .hero .lead {
+        margin-bottom: 26px;
+    }
+    .cta {
+        margin-top: 26px;
+    }
+    .hero-quote {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: clamp(24px, 3vw, 34px);
+        box-shadow: 0 30px 80px -20px rgb(221 40 40 / 0.25);
+    }
+    .hero-quote blockquote {
+        margin: 0;
+        font-size: clamp(1.15rem, 2vw, 1.35rem);
+        line-height: 1.45;
+        font-weight: 500;
+    }
+    .hero-quote figcaption {
+        display: flex;
+        flex-direction: column;
+    }
+    .hero-quote .chip {
+        align-self: flex-start;
+    }
+    .stats-strip {
+        border-block: 1px solid var(--border);
+        background: var(--surface);
+        padding-block: 28px;
+    }
+    .stats-strip .grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+    }
+    .stat {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    .stat .v {
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: var(--red);
+        line-height: 1.1;
+    }
+    .stat .l {
+        color: var(--muted);
+        font-size: 0.92rem;
+    }
+    .center {
+        justify-content: center;
+        margin-top: 36px;
+    }
+    .theme h3 {
+        font-size: 1.4rem;
+    }
+    .theme blockquote {
+        margin: 14px 0 0;
+        padding-left: 16px;
+        border-left: 3px solid var(--red);
+        color: #e4e4e7;
+    }
+    .theme cite {
+        display: block;
+        font-style: normal;
+        font-size: 0.85rem;
+        margin-top: 4px;
+    }
+    .theme cite a {
+        color: var(--muted);
+    }
+</style>

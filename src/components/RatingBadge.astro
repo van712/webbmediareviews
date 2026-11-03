@@ -1,0 +1,38 @@
+---
+import Stars from "./Stars.astro";
+import GoogleMark from "./GoogleMark.astro";
+import { GOOGLE_REVIEWS_URL } from "../data/site";
+import { AVERAGE_RATING, REVIEW_COUNT } from "../data/reviews";
+---
+
+<a class="badge" href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener">
+    <GoogleMark size={22} />
+    <span class="score">{AVERAGE_RATING.toFixed(1)}</span>
+    <Stars rating={Math.round(AVERAGE_RATING)} size={18} />
+    <span class="count">{REVIEW_COUNT} Google reviews</span>
+</a>
+
+<style>
+    .badge {
+        display: inline-flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 18px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        text-decoration: none;
+    }
+    .badge:hover {
+        border-color: #3f3f46;
+    }
+    .score {
+        font-weight: 800;
+        font-size: 1.15rem;
+    }
+    .count {
+        color: var(--muted);
+        font-size: 0.92rem;
+    }
+</style>

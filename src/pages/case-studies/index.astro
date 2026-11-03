@@ -1,0 +1,88 @@
+---
+import Base from "../../layouts/Base.astro";
+import PageHero from "../../components/PageHero.astro";
+import CaseCard from "../../components/CaseCard.astro";
+import CtaBand from "../../components/CtaBand.astro";
+import { CASE_STUDIES, OTHER_BUILDS } from "../../data/case-studies";
+import { breadcrumbLd } from "../../lib/schema";
+import { sizeOf } from "../../lib/images";
+
+const crumbs = [{ name: "Client results", path: "/case-studies/" }];
+const ads = CASE_STUDIES.filter((c) => c.service === "facebook-ads");
+const sites = CASE_STUDIES.filter((c) => c.service === "websites");
+---
+
+<Base
+    title="Webb Media Results & Case Studies | Real Client Results"
+    description={`${CASE_STUDIES.length} Webb Media case studies with real numbers: Facebook ads returns up to 88.6x and websites that brought in $1.1M in quotes. See what Webb Media did for each client.`}
+    schema={[breadcrumbLd(crumbs)]}
+>
+    <PageHero
+        eyebrow="Client results"
+        title="Webb Media results and case studies"
+        lead="Reviews tell you what it's like to work with Webb Media. These show what it brought in. Every case study lists the ad spend, the revenue and what was done."
+        crumbs={crumbs}
+    />
+
+    <section class="section">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>Facebook &amp; Instagram ads</h2>
+                <p class="lead">Local Meta ads for tradies and home service businesses, with creative made in-house and every lead followed up fast.</p>
+            </div>
+            <div class="grid grid-3">{ads.map((study) => <CaseCard study={study} />)}</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>Websites</h2>
+                <p class="lead">Custom websites built to load fast, rank on Google and turn visitors into quote requests.</p>
+            </div>
+            <div class="grid grid-3">{sites.map((study) => <CaseCard study={study} />)}</div>
+
+            <h3 class="more-h">More websites built by Webb Media</h3>
+            <div class="grid grid-4">
+                {
+                    OTHER_BUILDS.map((b) => (
+                        <a class="card build" href={b.url} target="_blank" rel="noopener">
+                            <img src={b.image} alt={`${b.company} website by Webb Media`} loading="lazy" {...sizeOf(b.image)} />
+                            <strong>{b.company}</strong>
+                            <span class="muted">{b.note}</span>
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <CtaBand />
+</Base>
+
+<style>
+    .more-h {
+        margin: 56px 0 20px;
+    }
+    .build {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        text-decoration: none;
+        padding: 14px;
+    }
+    .build img {
+        border-radius: 10px;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        object-position: top;
+        width: 100%;
+        margin-bottom: 8px;
+    }
+    .build span {
+        font-size: 0.88rem;
+    }
+    .build:hover {
+        border-color: #3f3f46;
+    }
+</style>

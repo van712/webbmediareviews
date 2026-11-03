@@ -1,0 +1,25 @@
+---
+interface Props {
+    rating?: number;
+    size?: number;
+}
+const { rating = 5, size = 18 } = Astro.props;
+---
+
+<span class="stars" role="img" aria-label={`${rating} out of 5 stars`}>
+    {
+        Array.from({ length: 5 }, (_, i) => (
+            <svg width={size} height={size} viewBox="0 0 20 20" aria-hidden="true" fill={i < rating ? "var(--star)" : "#3f3f46"}>
+                <path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z" />
+            </svg>
+        ))
+    }
+</span>
+
+<style>
+    .stars {
+        display: inline-flex;
+        gap: 2px;
+        vertical-align: middle;
+    }
+</style>

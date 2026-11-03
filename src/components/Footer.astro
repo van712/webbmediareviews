@@ -1,0 +1,116 @@
+---
+import { BUSINESS, SOCIALS, NAV, GOOGLE_REVIEWS_URL, BOOK_CALL_URL } from "../data/site";
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+    <div class="wrap cols">
+        <div class="about">
+            <a href="/" class="brand">
+                <img src="/favicon.svg" width="34" height="34" alt="" loading="lazy" />
+                <span>Webb Media <strong>Reviews</strong></span>
+            </a>
+            <p class="muted">
+                Real reviews, testimonials and results from clients of <a href={BUSINESS.mainSite}>Webb Media</a>, the Facebook ads and web design agency for
+                Australian tradies run by {BUSINESS.founder}.
+            </p>
+            <p class="small muted">This site is owned and run by Webb Media. Reviews are copied word for word from Google, and every one links back to the original.</p>
+        </div>
+        <div>
+            <h2 class="h">Explore</h2>
+            <ul>
+                {NAV.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+                <li><a href="/reviews/facebook-ads/">Facebook ads reviews</a></li>
+                <li><a href="/reviews/website-design/">Website design reviews</a></li>
+                <li><a href="/is-webb-media-legit/">Is Webb Media legit?</a></li>
+            </ul>
+        </div>
+        <div>
+            <h2 class="h">Webb Media</h2>
+            <ul>
+                <li><a href={BOOK_CALL_URL}>webbmedia.com.au</a></li>
+                <li><a href={BUSINESS.phoneHref}>{BUSINESS.phone}</a></li>
+                <li><a href={BUSINESS.emailHref}>{BUSINESS.email}</a></li>
+                <li class="muted">ABN {BUSINESS.abn}</li>
+                <li><a href={GOOGLE_REVIEWS_URL} rel="noopener" target="_blank">Google reviews</a></li>
+                {SOCIALS.map((s) => <li><a href={s.href} rel="noopener me" target="_blank">{s.label}</a></li>)}
+            </ul>
+        </div>
+    </div>
+    <div class="wrap legal">
+        <span>© {year} Webb Media. All rights reserved.</span>
+        <a href="/leave-a-review/">Worked with us? Leave a review</a>
+    </div>
+</footer>
+
+<style>
+    .footer {
+        border-top: 1px solid var(--border);
+        padding-top: 56px;
+        background: #070707;
+    }
+    .cols {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 40px;
+    }
+    @media (max-width: 800px) {
+        .cols {
+            grid-template-columns: 1fr;
+        }
+    }
+    .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        margin-bottom: 14px;
+    }
+    .brand img {
+        border-radius: 8px;
+    }
+    .about {
+        max-width: 46ch;
+    }
+    .about a:not(.brand) {
+        color: var(--text);
+    }
+    .small {
+        font-size: 0.85rem;
+    }
+    .h {
+        font-size: 0.8rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--subtle);
+        margin-bottom: 14px;
+    }
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 8px;
+    }
+    ul a {
+        text-decoration: none;
+        color: var(--muted);
+    }
+    ul a:hover {
+        color: var(--text);
+    }
+    .legal {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 48px;
+        padding-block: 22px;
+        border-top: 1px solid var(--border);
+        font-size: 0.85rem;
+        color: var(--subtle);
+    }
+    .legal a {
+        color: var(--muted);
+    }
+</style>
