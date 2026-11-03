@@ -50,21 +50,32 @@ const TAGS: Record<string, Tag> = {
     "Sam Hoffensetz": { services: ["facebook-ads", "coaching"], business: "CAF Pressure Washing", caseStudy: "caf-pressure-washing", featured: true },
     "John Sav": { services: ["websites"], featured: true },
     Shaun: { services: ["facebook-ads", "websites"], featured: true },
-    "Eddie Phillips": { services: ["websites"], featured: true },
+    "Eddie Phillips": { services: ["websites"], business: "Elite Detail Specialists", caseStudy: "elite-detail-specialists", featured: true },
     "Rosemary Fung": { services: ["facebook-ads"], business: "Cleana Carpets", caseStudy: "cleana-carpets", featured: true },
     TnbQuan: { services: ["facebook-ads"], featured: true },
-    // TODO(van): confirm Munya is the All Pro Pressure Washing client, then add business + caseStudy.
-    "Munya Johnstone": { services: ["facebook-ads"] },
+    // Business links below come from Webb Media's client tracker and case-study docs (Nov 2026).
+    "Munya Johnstone": { services: ["facebook-ads"], business: "All Pro Pressure Washing", caseStudy: "all-pro-pressure-washing" },
     Andrew: { services: ["websites"], business: "Noble Bathrooms" },
-    "Isaac Hill": { services: ["websites"] },
-    // TODO(van): is this Christian from Reset Exterior Cleaning?
-    "Christian Greenhalgh": { services: ["facebook-ads"] },
+    "Isaac Hill": { services: ["websites"], business: "Wild Landscape Co", caseStudy: "wild-landscape-co" },
+    "Christian Greenhalgh": { services: ["facebook-ads"], business: "Reset Exterior Cleaning", caseStudy: "reset-exterior-cleaning" },
     "Jack Young": { services: ["websites", "facebook-ads"] },
-    "Giulio Rocco": { services: [] },
-    "Ben McGaughran": { services: ["websites"] },
-    "David Forgan": { services: [] },
-    "Waheeb Irshad": { services: [] },
+    "David Forgan": { services: ["websites"], business: "The Brisbane Bathroom Co", caseStudy: "brisbathco" },
 };
+
+/**
+ * Reviews from people who aren't clients or have a personal or business
+ * connection to Webb Media. They stay on Google (that's up to Google), but
+ * presenting them here as client reviews would be misleading, so they're
+ * not shown. The sourcing page explains this rule publicly.
+ */
+const EXCLUDED: { match: (r: { name: string; text: string }) => boolean; reason: string }[] = [
+    { match: (r) => r.name === "Giulio Rocco", reason: "business partner (Venture Ascend)" },
+    { match: (r) => r.name === "Ben McGaughran", reason: "business partner (Venture Ascend)" },
+    { match: (r) => r.name === "Waheeb Irshad", reason: "prospect after one meeting, not a client" },
+    // TODO(van): swap these for exact Google display names once the sync has run.
+    { match: (r) => /^poppy\b/i.test(r.name), reason: "personal connection to Van" },
+    { match: (r) => /^liam\b/i.test(r.name) && /competition/i.test(r.text), reason: "works at another agency" },
+];
 
 const slug = (s: string) =>
     s
@@ -82,7 +93,7 @@ interface SyncedReview {
 }
 
 const seen = new Set<string>();
-const withText = (synced.reviews as SyncedReview[]).filter((r) => r.text && r.text.trim().length > 0);
+const withText = (synced.reviews as SyncedReview[]).filter((r) => r.text && r.text.trim().length > 0 && !EXCLUDED.some((e) => e.match(r)));
 
 export const REVIEWS: Review[] = withText
     .map((r) => {
@@ -101,6 +112,8 @@ export const AVERAGE_RATING: number = synced.averageRating;
 export const REVIEWS_SYNCED_AT: string = synced.syncedAt;
 /** e.g. "November 2026" */
 export const REVIEWS_SYNCED_LABEL = new Date(synced.syncedAt).toLocaleDateString("en-AU", { month: "long", year: "numeric", timeZone: "Australia/Brisbane" });
+/** How many Google reviews are left off this site under the related-party rule. */
+export const EXCLUDED_COUNT = (synced.reviews as SyncedReview[]).filter((r) => EXCLUDED.some((e) => e.match(r))).length;
 /** True when every written review shown is five stars. Copy that says "all five stars" checks this. */
 export const ALL_FIVE_STAR = REVIEWS.every((r) => r.rating === 5);
 

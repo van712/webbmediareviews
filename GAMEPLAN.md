@@ -1,113 +1,138 @@
 # webbmediareviews.com.au: gameplan
 
-**Goal:** when anyone searches "Webb Media reviews" (or "Van Topham reviews", "is Webb Media legit", "Webb Media results"…), page one is full of Webb Media's own proof: this site, the main site, the Google Business Profile and third-party review profiles.
+**Goal:** when anyone searches "Webb Media reviews" (or "Van Topham reviews", "is Webb Media legit", "Webb Media results"), page one is full of real, checkable proof: this site, webbmedia.com.au, the Google Business Profile and third-party review profiles.
 
-**Good news:** a search for `"Webb Media" reviews` today shows nothing relevant. It's a mix of unrelated businesses (Webbmedia Group in the US, Webb Marketing Services, etc). Nobody owns this search yet, so a focused site on an exact-match domain should rank quickly once it's indexed and linked from webbmedia.com.au.
+**Opportunity:** a search for `"Webb Media" reviews` currently shows only unrelated businesses, mostly overseas. Nobody owns it yet.
 
 ---
 
-## 1. What's built (v1, in this repo)
+## 1. Positioning: why the site doesn't pretend to be independent
 
-25 static pages, built with Astro, styled to match webbmedia.com.au (black, Webb Media red, Satoshi font).
+The site is styled as a neutral proof hub: no sales pitch, no "book a call" buttons, and every claim links to its source. It does **not** pretend a third party made it. The footer says Webb Media runs it, and `/how-we-source-reviews/` explains the rules.
 
-| Page | Targets |
+Why not disguise it:
+
+- **Australian Consumer Law.** Making a business-run review site look independent is misleading conduct under s18. The ACCC has fined businesses for exactly this, and for showing reviews from related parties.
+- **Google.** Sites built to look like independent reviews of their owner fall under Google's deceptive-practices spam rules. If Google spots it, it can drop the site and hurt webbmedia.com.au too.
+- **It backfires.** One WHOIS lookup or competitor post saying "Webb Media runs its own fake review site" would rank for your brand name for years.
+
+A transparent site still ranks, and the trust comes from the proof being checkable.
+
+## 2. What's built
+
+27 static pages, built with Astro and styled to match webbmedia.com.au:
+
+- Home
+- All reviews, plus review pages for Facebook ads and for website design
+- 15 case studies
+- Video testimonials
+- About Van
+- Is Webb Media legit?
+- How reviews are sourced
+- Leave a review (noindex)
+
+### Reviews auto-update
+
+A GitHub Action runs every day. It pulls every review from the Google Business Profile API, word for word, into `src/data/google-reviews.json` and commits it. Vercel then redeploys, so counts, averages and dates update by themselves. The setup steps are in the README.
+
+A Google review widget (Elfsight, Trustindex, etc.) wouldn't do this job. It loads inside an iframe or script, so Google doesn't count the text as part of your page, and the reviews would add nothing to SEO.
+
+### Trust rules built into the code
+
+- Every written client review is shown, whatever its rating.
+- Reviews from non-clients and related parties are excluded, and the site says so publicly. Currently excluded:
+  - Giulio and Ben (Venture Ascend partners)
+  - Waheeb (prospect)
+  - Poppy (personal connection)
+  - Liam (another agency)
+- Case-study quotes that only appear on webbmedia.com.au, with no email or video to back them up, are left off. These are the quotes for Joe, Munya, Quinton, Christian, Rabih and Nick & Matt, and the three "Team" quotes.
+- Each Meta ads case study has a "Checked in Meta Ads Manager (Nov 2026)" box with lifetime spend, leads and cost per lead.
+
+---
+
+## 3. Case study audit (Ads Manager, Gmail, Drive, GHL, Nov 2026)
+
+**Already on the site (15):** RKS, Pristine, Clean Coast, CAF, Richie's, Mobile Mates, Cleana, IQ, All Pro, Reset, BrisBathCo, Wild Landscape Co, Elite Detail, Spray Pave Perth, Lindsay Catlin Fencing.
+
+**Verified in Ads Manager:**
+
+| Client | Total spend | Leads | Cost per lead | Note |
+|---|---|---|---|---|
+| Cleana Carpets | $38,962 | 4,238 (+135 calls) | $9.19 | Strongest figures, still running |
+| Pristine Pressure Washing | $8,051 | 575 | $14.00 | |
+| Clean Coast Pressure Washing | $3,565 | 422 | $8.45 | |
+| CAF Pressure Washing | $1,200 | 109 | $11.01 | |
+| Richie's Painting | $2,511 | 120 | $20.92 | |
+| RKS Renovations | $6,101 | 83 | $73.51 | |
+| All Pro Pressure Washing | | 145 (2026 campaign) | $72.64 → $22.12 | Before vs after Webb Media |
+
+**RKS change:** I replaced RKS's "88.6x ROAS" headline with "$42K job". That 88.6x is the job value divided by only the first $474 of spend, while the account spent $6,101 in total, so it reads as misleading.
+
+**New candidates (not ready yet, so not added):**
+
+1. **KN Exteriors** (Mitch & Oli, Newcastle). 38 leads at $20 in 4 weeks, and Mitch has left a Google review. Revisit in December.
+2. **Refined Mobile Detailing** (Macauley, Sippy Downs). 65 leads at $3.09, but from only 8 days and $200 of spend. Revisit in 4–6 weeks.
+3. **All Bright Pressure Cleaning** (John). Strong review ("Van the Man"), but no results data yet.
+4. **CJM Lawn Care** (Jessica). Website plus a review. Needs lead numbers.
+5. **Lovewood Designs**, **QLD Concrete Constructions**, **George Painting** and **Maroochydore Tiling**. Too early.
+6. Website-only builds (All Powered Electrical, Kisses Detailing, Taylor Epoxy, Mystic Tree, Bird of Paradise). These could become a "websites we've built" gallery once you've checked each one is live.
+
+**Leave out:** The Experts Group (churned after a late launch), HPS Exterior Cleaning (went quiet), and anything connected to the Vex Media dispute.
+
+**Launch blocker: the same client has different numbers in different docs.** Before launch, choose one figure for each client and keep its source (a screenshot or an email):
+
+| Client | Versions found |
 |---|---|
-| `/` | webb media reviews, webb media testimonials |
-| `/reviews/` | all 18 Google reviews, word for word |
-| `/reviews/facebook-ads/` | webb media facebook ads reviews |
-| `/reviews/website-design/` | webb media website / web design reviews |
-| `/case-studies/` + 15 case study pages | webb media results, "<client> webb media" |
-| `/video-testimonials/` | webb media video testimonials |
-| `/about/` | van topham, van topham reviews |
-| `/is-webb-media-legit/` | is webb media legit, webb media scam |
-| `/leave-a-review/` | (noindex) the link you send clients for reviews |
+| Clean Coast | $900 → $18K, or $380 → $11K |
+| Richie's | $50K lined up, $196 → $6.5K, or $140K in 4 months |
+| Cleana | $19K → $77K, $1.1K → $8.2K, or $21K → $115K |
+| RKS | $474 → $42K job, $4.7K → $38K, or $5K → $92K |
+| BrisBathCo | $1.1M in quotes / $85K, or 2 deals at 16x |
+| Elite Detail | +30% conversion, or +62% |
+| Wild Landscape Co | $110K in 6 months, or 8 months, or "in quotes" |
 
-SEO plumbing that's already in:
-- A unique title and description per page, canonical URLs, a sitemap, robots.txt and an Open Graph share image.
-- Organization schema using the **same `@id` as webbmedia.com.au**, so Google treats both sites as one entity.
-- Breadcrumb schema, FAQ schema, and Person schema for Van.
-- Static HTML with no client-side framework, so pages load fast. Videos only load when someone clicks play.
+Different numbers may all be true at different dates. If so, put a date on each one.
 
-### Trust rules (important)
-
-- **Reviews are word for word from Google.** Typos stay, and every review links to Google.
-- **No made-up or reworded quotes.** The case-study quotes on webbmedia.com.au that don't match a Google review or video (Joe, Munya, Quinton, Christian, Rabih, Nick & Matt, and the "Team" quotes for BrisBathCo, Wild Landscape and Elite Detail) are **left off** this site. If they're real (from a text, email or video), send me the source and they go back on.
-- **No review star markup.** Google doesn't show stars for reviews a business hosts about itself ("self-serving reviews"). Faking it risks a penalty. The stars that matter appear on the Google Business Profile.
+**Churned clients still featured:** IQ, All Pro, RKS and Reset have ended, and Mobile Mates has an unpaid balance. Their reviews and results are real, but message each one before launch to check they're still happy to be shown. It's the right thing to do, and it protects you if someone complains.
 
 ---
 
-## 2. Design direction
+## 4. Phases
 
-- **Look:** the same brand as webbmedia.com.au, so visitors know it's you. Dark background, red accents, gold Google stars.
-- **Feel:** a "proof wall". The reviews and numbers do the talking. The copy is short, plain English and Aussie, written in the same voice as the main site.
-- **Every page ends in one action:** book a call on webbmedia.com.au. This site is the trust step; the main site does the selling.
-- **Later polish (v2):** real photos of Van and clients on the job, logo marquee, short looping clips from the video testimonials, and a "latest review" ticker.
+**Phase 1 — launch**
 
----
+1. Create the repo, Vercel project and DNS.
+2. Set up the review sync.
+3. Settle the number conflicts above.
+4. Submit to Google Search Console and Bing Webmaster Tools, and link the site from the webbmedia.com.au footer.
 
-## 3. Content plan
+**Phase 2 — weeks 2–4**
 
-**Phase 1 — launch (this week)**
-1. Create the repo, deploy to Vercel and point the domain (see section 5).
-2. Submit to Google Search Console and Bing Webmaster Tools, and submit `sitemap-index.xml`.
-3. Add a link from webbmedia.com.au to this site: footer "Reviews" plus a "Read all our reviews" link on the testimonials section. I can do this in the `webbmedia` repo.
-4. Point a few "Website by Webb Media" credits on client sites at `webbmediareviews.com.au/reviews/`.
+1. Review push to every current client: KN, All Bright, Pristine, Richie's, Cleana, Clean Coast, CAF, Lovewood, CJM.
+2. Set up ProductReview.com.au, Trustpilot and Clutch profiles.
+3. Ask permission to quote the praise found in emails (list below).
+4. Add video transcripts.
 
-**Phase 2 — more proof (weeks 2–4)**
-1. **Review push:** ask every current and past client for a Google review, using `/leave-a-review/` as the link. Ask them to mention their trade, their suburb and what you did. Target: 18 → 40 reviews.
-2. **Third-party profiles:** for "brand + reviews" searches, Google loves review platforms. Set up and collect a few reviews on each, and they'll rank alongside this site and take up more of page one:
-   - ProductReview.com.au
-   - Trustpilot
-   - Clutch
-   - Facebook page reviews
-   - Hotfrog / Yellow Pages / True Local, using the same name, phone and website everywhere
-3. **Client interviews:** a 10-minute call or voice memo per case study, written up as a unique story with real quotes. This is the biggest SEO upgrade, because the case studies are currently close copies of the main site's.
-4. **Video transcripts** under each video testimonial: unique text, plus VideoObject schema (which needs upload dates).
+**Phase 3 — months 2–3**
 
-**Phase 3 — grow (months 2–3)**
-1. Industry pages once each has 3+ reviews, e.g. `/reviews/pressure-washing/`, `/reviews/painters/` and `/reviews/renovations/`.
-2. Location pages, but only with real local reviews, e.g. "Webb Media Gold Coast reviews".
-3. A "Results this month" log: one short post per client win, which keeps the site fresh.
-4. Re-sync Google reviews monthly (copy new ones into `src/data/reviews.ts`). This could be automated later with the Google Business Profile API.
+1. Add KN Exteriors and Refined Mobile Detailing as case studies.
+2. Add industry review pages (pressure washing, detailing, painting) once each has 3+ reviews.
+3. Post a monthly "results this month" update.
 
-**Brand-name note:** there are other "Webb Media" and "Webbmedia" businesses overseas. Always pair the name with *Australia*, *tradies* or *Van Topham* in titles and profiles, so Google knows which Webb Media this is. The site already does this.
+**Email praise worth asking permission for:**
+
+- John (Euro Chiptuning / IGLA), 3 Oct: "Mate, what can I say?! You have absolutely smashed it. I absolutely love it."
+- Sam (CAF), 28 Sep: "This month's revenue from the ads will be $8,114.32 … Super happy with how they went."
+- Hogan (Clean Coast), 22 Jun: "Brooo! Those are sick man, super happy with them!"
 
 ---
 
-## 4. What I need from Van
+## 5. Also worth fixing on webbmedia.com.au
 
-In priority order:
+These are on your main site, not this one, but the same ACCC rules apply:
 
-1. **GitHub repo.** Create an empty private repo `van712/webbmediareviews` (no README), or reconnect GitHub at claude.ai/connect-github. Then I'll push this code.
-2. **Hosting go-ahead.** OK to put it on Vercel in the same team as webbmedia.com.au?
-3. **GoDaddy DNS.** Once Vercel is set up, add the 2 records it shows in GoDaddy → My Products → DNS. They're usually:
-   - `A @ 76.76.21.21`
-   - `CNAME www cname.vercel-dns.com`
+- `/bootcamp` shows six **placeholder testimonials with stock photos** ("Ryan Mitchell, Plumber"). It's noindexed, but anyone can still see it. Remove them.
+- The case-study quotes in `src/constants/projects.ts` that can't be traced to a client should be backed up or removed: Joe, Munya, Quinton, Christian, Rabih, and the three "Team" quotes.
+- Ask Poppy to remove her two Google reviews. Google's rules ban reviews from family members, and a profile can be penalised for them.
 
-   Use the exact values Vercel gives you.
-4. **Google reviews.**
-   - Any new reviews since October? Paste them or send a screenshot.
-   - The direct "write a review" link: Google Business Profile → *Ask for reviews*.
-5. **Confirm who's who:**
-   - Is Munya Johnstone from All Pro Pressure Washing?
-   - Is Christian Greenhalgh from Reset Exterior Cleaning?
-   - Is TnbQuan Quinton from IQ Pressure Washing?
-   - Is John Sav from Euro Chiptuning?
-
-   If yes, I'll link each review to that client's results.
-6. **The case-study quotes** listed in section 1: are they real? If so, send the texts, emails or videos.
-7. **Client OK.** Are all named clients happy to be featured? They're already on webbmedia.com.au, so this is likely yes.
-8. **Photos:**
-   - Van, ideally a front-on shot.
-   - Van with clients or on jobs.
-   - Before/after photos from client campaigns.
-   - Any more ad or result screenshots.
-9. **Video details:**
-   - Upload dates for the 4 YouTube Shorts.
-   - Any other video testimonials.
-   - Is the Instagram one OK to embed?
-10. **Profile links:**
-    - The Facebook page.
-    - Any existing Trustpilot, ProductReview or Clutch listings.
-    - Your base suburb or city.
-11. **Selling points to confirm.** Eddie's review contrasts you with "companies with lock in contracts". Is it true that Webb Media has no lock-in contracts? If so, that's a strong line to add. Also confirm the "performance guarantee" from the main site's FAQ.
+I can make these changes in the `webbmedia` repo whenever you say.

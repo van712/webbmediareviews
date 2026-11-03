@@ -3,7 +3,7 @@ import Base from "../layouts/Base.astro";
 import PageHero from "../components/PageHero.astro";
 import CtaBand from "../components/CtaBand.astro";
 import { BUSINESS, GOOGLE_REVIEWS_URL } from "../data/site";
-import { REVIEWS_SYNCED_LABEL } from "../data/reviews";
+import { REVIEWS_SYNCED_LABEL, EXCLUDED_COUNT } from "../data/reviews";
 import { breadcrumbLd } from "../lib/schema";
 
 const crumbs = [{ name: "How reviews are sourced", path: "/how-we-source-reviews/" }];
@@ -34,7 +34,11 @@ const crumbs = [{ name: "How reviews are sourced", path: "/how-we-source-reviews
             <h2>The rules</h2>
             <ul>
                 <li>Reviews are copied word for word. Spelling and typos are left as written.</li>
-                <li>Every written review on Google is shown, whatever its star rating. None are hidden or filtered.</li>
+                <li>Every written review from a client is shown, whatever its star rating. Bad reviews are not hidden.</li>
+                <li>
+                    Reviews from people who aren't clients, or who have a personal or business connection to Webb Media (family, business partners, other agencies), are
+                    left off this site{EXCLUDED_COUNT > 0 && ` (${EXCLUDED_COUNT} at the moment)`}. They still appear on Google, so the total on Google can be higher than the number shown here.
+                </li>
                 <li>No review is written, edited or paid for, and no one is offered anything in exchange for a review.</li>
                 <li>Quotes are only used if the client wrote or said them publicly, or agreed to them being shared.</li>
                 <li>If you're a client and want something changed or removed, email <a href={BUSINESS.emailHref}>{BUSINESS.email}</a>.</li>

@@ -270,6 +270,7 @@ export const CASE_STUDIES: CaseStudy[] = [
             { src: "/images/proof/all-pro-pressure-washing.png", alt: "All Pro Pressure Washing Meta Ads results" },
             { src: "/images/proof/all-pro-pressure-washing-2.png", alt: "All Pro Pressure Washing revenue summary" },
         ],
+        reviewId: "munya-johnstone",
         mainSiteUrl: main("all-pro-pressure-washing"),
         adsManager: { asOf: "November 2026", items: [{ label: "Cost per lead, 2024 (before)", value: "$72.64" }, { label: "Cost per lead, 2026 Webb Media campaign", value: "$22.12" }, { label: "Leads in that campaign", value: "145" }] },
     },
@@ -295,6 +296,7 @@ export const CASE_STUDIES: CaseStudy[] = [
             { src: "/images/proof/reset-exterior-cleaning.png", alt: "Reset Exterior Cleaning Meta Ads results" },
             { src: "/images/proof/reset-exterior-cleaning-2.png", alt: "Reset Exterior Cleaning revenue summary" },
         ],
+        reviewId: "christian-greenhalgh",
         mainSiteUrl: main("reset-exterior-cleaning"),
     },
     {
@@ -319,6 +321,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         proof: [],
         siteImage: "/images/sites/brisbathco.webp",
         siteUrl: "https://brisbathco.com.au/",
+        reviewId: "david-forgan",
         mainSiteUrl: main("brisbathco"),
     },
     {
@@ -342,6 +345,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         proof: [{ src: "/images/proof/wild-landscape-co.png", alt: "Wild Landscape Co website results" }],
         siteImage: "/images/sites/wild-landscape-co.webp",
         siteUrl: "https://wildlandscapeco.com.au/",
+        reviewId: "isaac-hill",
         mainSiteUrl: main("wild-landscape-co"),
     },
     {
@@ -364,6 +368,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         proof: [{ src: "/images/proof/elite-detail-specialists.png", alt: "Elite Detail Specialists website results" }],
         siteImage: "/images/sites/elite-detail-specialists.webp",
         siteUrl: "https://elitedetailspecialists.com/",
+        reviewId: "eddie-phillips",
         mainSiteUrl: main("elite-detail-specialists"),
     },
     {
