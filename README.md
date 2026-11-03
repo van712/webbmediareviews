@@ -48,7 +48,21 @@ Put them in `public/images/`, then run `python3 scripts/image-sizes.py` so pages
 
 ## Deploy
 
-1. Import the GitHub repo into Vercel. It auto-detects Astro, so no config is needed.
-2. Vercel → Project → Settings → Domains: add `webbmediareviews.com.au` (primary) and `www.webbmediareviews.com.au` (redirects to it).
-3. In GoDaddy DNS, add the records Vercel shows. These are usually `A @ 76.76.21.21` and `CNAME www cname.vercel-dns.com`.
-4. Add the site to Google Search Console and submit `https://webbmediareviews.com.au/sitemap-index.xml`.
+1. **Vercel:** in the "Webb Media's projects" team, click Add New → Project, import `van712/webbmediareviews` and press Deploy. It auto-detects Astro, so no settings are needed.
+2. **Domains:** go to Project → Settings → Domains and add both domains:
+   - `webbmediareviews.com.au` (primary)
+   - `www.webbmediareviews.com.au`, set to redirect to the primary
+3. **GoDaddy DNS:** go to My Products → `webbmediareviews.com.au` → DNS. Make these changes:
+   - **Delete** both existing `A @` records: `3.33.130.190` and `15.197.148.33`. These are GoDaddy's parking page.
+   - **Add** these 2 records:
+
+     | Type | Name | Value | TTL |
+     |---|---|---|---|
+     | A | @ | `216.150.1.1` | 1 hour |
+     | A | @ | `216.150.16.1` | 1 hour |
+
+   - **Edit** the existing `CNAME www` record. Change its value from `@` to `e56782a5b2f4879d.vercel-dns-017.com`.
+   - If **Forwarding** is turned on for the domain, turn it off.
+
+   These values come from Vercel's recommended config for this domain (3 Nov 2026). If Vercel's Domains page shows different values, use the ones it shows.
+4. **Google Search Console:** add the site and submit `https://webbmediareviews.com.au/sitemap-index.xml`.

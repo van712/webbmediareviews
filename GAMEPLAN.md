@@ -68,8 +68,6 @@ A Google review widget (Elfsight, Trustindex, etc.) wouldn't do this job. It loa
 | RKS Renovations | $6,101 | 83 | $73.51 | |
 | All Pro Pressure Washing | | 145 (2026 campaign) | $72.64 → $22.12 | Before vs after Webb Media |
 
-**RKS change:** I replaced RKS's "88.6x ROAS" headline with "$42K job". That 88.6x is the job value divided by only the first $474 of spend, while the account spent $6,101 in total, so it reads as misleading.
-
 **New candidates (not ready yet, so not added):**
 
 1. **KN Exteriors** (Mitch & Oli, Newcastle). 38 leads at $20 in 4 weeks, and Mitch has left a Google review. Revisit in December.
@@ -81,21 +79,21 @@ A Google review widget (Elfsight, Trustindex, etc.) wouldn't do this job. It loa
 
 **Leave out:** The Experts Group (churned after a late launch), HPS Exterior Cleaning (went quiet), and anything connected to the Vex Media dispute.
 
-**Launch blocker: the same client has different numbers in different docs.** Before launch, choose one figure for each client and keep its source (a screenshot or an email):
+**Results chosen (3 Nov 2026).** Where Webb Media's docs disagreed, each case study uses the figure with the strongest source. The order is: the client's own words, then Meta Ads Manager, then Van's latest dated record. The same figures are used on webbmedia.com.au.
 
-| Client | Versions found |
-|---|---|
-| Clean Coast | $900 → $18K, or $380 → $11K |
-| Richie's | $50K lined up, $196 → $6.5K, or $140K in 4 months |
-| Cleana | $19K → $77K, $1.1K → $8.2K, or $21K → $115K |
-| RKS | $474 → $42K job, $4.7K → $38K, or $5K → $92K |
-| BrisBathCo | $1.1M in quotes / $85K, or 2 deals at 16x |
-| Elite Detail | +30% conversion, or +62% |
-| Wild Landscape Co | $110K in 6 months, or 8 months, or "in quotes" |
+| Client | Figure used | Source |
+|---|---|---|
+| Pristine | Monthly revenue 4x in 3 months; 575 leads at $14 | Nick's Google review; Ads Manager |
+| CAF | $8,114 of jobs in September; 109 leads at $11 | Sam's email (28 Sep); Ads Manager |
+| Richie's | Booked out 3 months ahead; $6.5K closed from the first $196 | Anthony's review; 16 Jul record |
+| Cleana | $115K revenue from the $21K "Ad Launch" campaign; 4,238 leads at $9.19 | 20 Oct record; campaign spend matches Ads Manager |
+| RKS | $92K of work from $6,101 total spend (15x); the $42K job came within the first $474 | 20 Oct record; Ads Manager |
+| Wild Landscape Co | $30K in the first week; $110K in the first 8 months | Results deck |
+| Clean Coast | $18K in the first month from $900 | Matches July spend in Ads Manager |
+| BrisBathCo | $1.1M in quotes in 6 months; $85K in month one | Proof Bank |
+| Elite Detail | +30% conversion | The lower of two figures, so it's safe if anyone checks |
 
-Different numbers may all be true at different dates. If so, put a date on each one.
-
-**Churned clients still featured:** IQ, All Pro, RKS and Reset have ended, and Mobile Mates has an unpaid balance. Their reviews and results are real, but message each one before launch to check they're still happy to be shown. It's the right thing to do, and it protects you if someone complains.
+**Featured clients:** Van confirmed (3 Nov) that every client shown, including those who have finished with Webb Media, is happy to be featured.
 
 ---
 
@@ -103,17 +101,18 @@ Different numbers may all be true at different dates. If so, put a date on each 
 
 **Phase 1 — launch**
 
-1. Create the repo, Vercel project and DNS.
-2. Set up the review sync.
-3. Settle the number conflicts above.
-4. Submit to Google Search Console and Bing Webmaster Tools, and link the site from the webbmedia.com.au footer.
+1. ~~Create the repo.~~ Done.
+2. Import the project into Vercel and add the GoDaddy DNS records (see the README).
+3. Set up the review sync.
+4. ~~Settle the number conflicts.~~ Done.
+5. Submit to Google Search Console and Bing Webmaster Tools.
+6. Merge the webbmedia.com.au fixes branch, which also adds the footer link to this site.
 
 **Phase 2 — weeks 2–4**
 
 1. Review push to every current client: KN, All Bright, Pristine, Richie's, Cleana, Clean Coast, CAF, Lovewood, CJM.
 2. Set up ProductReview.com.au, Trustpilot and Clutch profiles.
-3. Ask permission to quote the praise found in emails (list below).
-4. Add video transcripts.
+3. Add video transcripts.
 
 **Phase 3 — months 2–3**
 
@@ -121,20 +120,18 @@ Different numbers may all be true at different dates. If so, put a date on each 
 2. Add industry review pages (pressure washing, detailing, painting) once each has 3+ reviews.
 3. Post a monthly "results this month" update.
 
-**Email praise worth asking permission for:**
-
-- John (Euro Chiptuning / IGLA), 3 Oct: "Mate, what can I say?! You have absolutely smashed it. I absolutely love it."
-- Sam (CAF), 28 Sep: "This month's revenue from the ads will be $8,114.32 … Super happy with how they went."
-- Hogan (Clean Coast), 22 Jun: "Brooo! Those are sick man, super happy with them!"
+**Email quotes in use** (verbatim, permission given 3 Nov): Sam (CAF) and Hogan (Clean Coast) on their case studies, and John (Euro Chiptuning / IGLA) on the IGLA card.
 
 ---
 
-## 5. Also worth fixing on webbmedia.com.au
+## 5. Fixes on webbmedia.com.au (approved 3 Nov)
 
-These are on your main site, not this one, but the same ACCC rules apply:
+These are on branch `fix/verified-results-and-reviews` in the `webbmedia` repo:
 
-- `/bootcamp` shows six **placeholder testimonials with stock photos** ("Ryan Mitchell, Plumber"). It's noindexed, but anyone can still see it. Remove them.
-- The case-study quotes in `src/constants/projects.ts` that can't be traced to a client should be backed up or removed: Joe, Munya, Quinton, Christian, Rabih, and the three "Team" quotes.
-- Ask Poppy to remove her two Google reviews. Google's rules ban reviews from family members, and a profile can be penalised for them.
+- The same result figures as this site, everywhere they appear.
+- The untraceable case-study quotes are replaced with the clients' real Google reviews.
+- The 6 placeholder bootcamp testimonials are removed.
+- The Google reviews list is updated, with related-party reviews excluded.
+- A footer link and schema `sameAs` pointing to this site.
 
-I can make these changes in the `webbmedia` repo whenever you say.
+Still for Van: ask Poppy to remove her Google reviews. Google bans reviews from family members, and a profile can be penalised for them.
