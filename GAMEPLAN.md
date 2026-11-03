@@ -20,7 +20,7 @@ A transparent site still ranks, and the trust comes from the proof being checkab
 
 ## 2. What's built
 
-27 static pages, built with Astro and styled to match webbmedia.com.au:
+26 static pages, built with Astro and styled to match webbmedia.com.au:
 
 - Home
 - All reviews, plus review pages for Facebook ads and for website design
