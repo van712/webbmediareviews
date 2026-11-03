@@ -86,6 +86,19 @@ const description = `${study.description} Read how Webb Media did it${review ? `
                 </p>
             </div>
             <aside class="side">
+                {study.emails && study.emails.length > 0 && (
+                    <>
+                        <h2 class="side-h">From {study.emails[0].author.split(" ")[0]}'s emails to Van</h2>
+                        {study.emails.map((e) => (
+                            <figure class="card email">
+                                <blockquote>“{e.text}”</blockquote>
+                                <figcaption class="muted">
+                                    {e.author} · {new Date(e.date).toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" })} · “{e.subject}”
+                                </figcaption>
+                            </figure>
+                        ))}
+                    </>
+                )}
                 {review && (
                     <>
                         <h2 class="side-h">{review.name.split(" ")[0]}'s Google review</h2>
@@ -261,6 +274,18 @@ const description = `${study.description} Read how Webb Media did it${review ? `
     }
     .ig {
         text-decoration: none;
+    }
+    .email {
+        margin: 0;
+        padding: 18px 20px;
+    }
+    .email blockquote {
+        margin: 0 0 8px;
+        font-size: 1.05rem;
+        font-weight: 500;
+    }
+    .email figcaption {
+        font-size: 0.82rem;
     }
     .proof {
         display: grid;

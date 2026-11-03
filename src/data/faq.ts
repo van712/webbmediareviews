@@ -21,7 +21,7 @@ export const HOME_FAQ = [
     },
     {
         q: "What results have Webb Media clients had?",
-        a: `RKS Renovations closed a $42,000 job from a lead that came in within its first $474 of ad spend, Pristine Pressure Washing adds about $30,000 a month from $50 a day in ads, and The Brisbane Bathroom Co's new website brought in $1.1M in qualified quotes in six months. <a href="/case-studies/">See every case study</a>.`,
+        a: `RKS Renovations won $92,000 of work from $6,100 in ads, Pristine Pressure Washing's monthly revenue quadrupled within three months, and The Brisbane Bathroom Co's new website brought in $1.1M in qualified quotes in six months. <a href="/case-studies/">See every case study</a>.`,
     },
     {
         q: "Where are these reviews from?",

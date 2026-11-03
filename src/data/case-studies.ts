@@ -31,6 +31,8 @@ export interface CaseStudy {
     reviewId?: string;
     video?: { url: string; youtubeId?: string; platform: "YouTube" | "Instagram" };
     mainSiteUrl: string;
+    /** Things the client wrote to Van by email, verbatim, shared with permission. */
+    emails?: { text: string; author: string; date: string; subject: string }[];
     /** Lifetime numbers read straight from the client's Meta Ads Manager account. */
     adsManager?: { asOf: string; items: { label: string; value: string }[]; note?: string };
 }
@@ -44,17 +46,18 @@ export const CASE_STUDIES: CaseStudy[] = [
         client: "Rabih",
         industry: "Renovations",
         service: "facebook-ads",
-        headline: "$42,000 renovation job from $474 in ad spend",
-        stat: "$42K job",
-        description: "Rabih closed a $42,000 renovation job from a lead that came in within his first $474 of ad spend.",
+        headline: "$92K of renovation work from $6.1K in ads",
+        stat: "15x ROAS",
+        description: "RKS Renovations' Meta ads brought in $92,000 of renovation work from $6,101 in total ad spend, a 15x return. The first big job, worth $42,000, came in within the first $474.",
         whatWasDone:
             "Meta ads aimed at homeowners planning a proper renovation, not people chasing the cheapest quote. The ads used video walk-throughs of RKS's finished jobs so people could see the standard of work before they enquired.",
         metrics: [
-            { label: "Spend when the job came in", value: "$474" },
-            { label: "Job value", value: "$42,000" },
-            { label: "Leads to date", value: "83" },
+            { label: "Total ad spend", value: "$6,101" },
+            { label: "Work won", value: "$92,000" },
+            { label: "Return on spend", value: "15x" },
+            { label: "Leads", value: "83" },
         ],
-        highlights: ["$42,000 job within the first $474 of ad spend", "Video walk-throughs of finished jobs", "Aimed at homeowners with real budgets"],
+        highlights: ["$92,000 of work from $6,101 in ads", "$42,000 job within the first $474", "Video walk-throughs of finished jobs", "Aimed at homeowners with real budgets"],
         logo: "/images/logos/rks-renovations.png",
         proof: [
             { src: "/images/proof/rks-renovations.png", alt: "RKS Renovations Meta Ads Manager results" },
@@ -70,17 +73,16 @@ export const CASE_STUDIES: CaseStudy[] = [
         client: "Nick & Matt",
         industry: "Pressure washing",
         service: "facebook-ads",
-        headline: "$30K a month in added revenue from $50 a day in ad spend",
-        stat: "20x ROAS",
-        description: "Added a consistent $30,000 a month in revenue for Nick and Matt from just $50 a day in ad spend, a 20x return.",
-        whatWasDone:
-            "Built a repeatable local campaign around before/after pressure washing content, tight suburb targeting and a quick quote flow. Kept the daily budget small and let the results compound month after month.",
+        headline: "Monthly revenue quadrupled within three months",
+        stat: "4x revenue",
+        description: "Nick and Matt signed with Webb Media in June 2026. In Nick's words, within three months their monthly revenue had quadrupled, from 575 Meta ad leads at $14 each.",
+        whatWasDone: "Built a repeatable local campaign around before/after pressure washing content, tight Sunshine Coast suburb targeting and a quick quote flow, then raised the budget as the jobs came in.",
         metrics: [
-            { label: "Ad spend", value: "$50/day" },
-            { label: "Monthly revenue", value: "$30,000" },
-            { label: "Return on spend", value: "20x" },
+            { label: "Monthly revenue, 3 months in", value: "4x" },
+            { label: "Leads", value: "575" },
+            { label: "Cost per lead", value: "$14" },
         ],
-        highlights: ["$30,000 a month, consistently", "$50 a day in ad spend", "20x return on ad spend", "Before/after creative that sells itself"],
+        highlights: ["Monthly revenue quadrupled in three months (Nick's review)", "575 leads from Meta ads", "$14 average cost per lead", "Before/after creative that sells itself"],
         logo: "/images/logos/pristine-pressure-washing.png",
         proof: [
             { src: "/images/proof/pristine-pressure-washing.png", alt: "Pristine Pressure Washing Meta Ads Manager results" },
@@ -116,6 +118,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         ],
         reviewId: "hogan-radic",
         video: { url: "https://www.youtube.com/shorts/XWom9IXqob4", youtubeId: "XWom9IXqob4", platform: "YouTube" },
+        emails: [{ text: "Brooo! Those are sick man, super happy with them!", author: "Hogan Radic", date: "2026-06-22", subject: "Re: Ads (his first look at the ad creative)" }],
         mainSiteUrl: main("clean-coast-pressure-washing"),
         adsManager: { asOf: "November 2026", items: [{ label: "Total ad spend", value: "$3,565" }, { label: "Leads", value: "422" }, { label: "Cost per lead", value: "$8.45" }] },
     },
@@ -125,21 +128,25 @@ export const CASE_STUDIES: CaseStudy[] = [
         client: "Sam",
         industry: "Pressure washing",
         service: "facebook-ads",
-        headline: "$0 to $15K in his first month",
-        stat: "17x ROAS",
-        description: "Took Sam from $0 to $15,000 in his first month of running ads, a 17x return on ad spend.",
-        whatWasDone:
-            "Started from nothing: no past customers, no reviews. Built the offer, the creative and the enquiry flow from scratch and ran local Meta Ads until the calendar filled.",
+        headline: "$8,114 of jobs from his ads in one month",
+        stat: "$8.1K month",
+        description: "Sam launched his first ever Meta ad campaign in August 2026. In September, by his own count, the ads brought in $8,114 of work, from leads costing about $11 each.",
+        whatWasDone: "Sam's first Meta campaign. Webb Media coached him through the offer, the creative and the setup in its ads bootcamp, then he ran local ads around Brisbane's inner west until the work came in.",
         metrics: [
-            { label: "Starting point", value: "$0" },
-            { label: "Revenue (month 1)", value: "$15,000" },
-            { label: "Return on spend", value: "17x" },
+            { label: "Revenue from ads, September", value: "$8,114" },
+            { label: "Leads", value: "109" },
+            { label: "Cost per lead", value: "$11.01" },
         ],
-        highlights: ["$0 to $15,000 in month one", "17x return on ad spend", "Built from scratch, no prior customers", "Local suburb targeting"],
+        highlights: ["$8,114 of jobs from ads in September (Sam's figures)", "109 leads at about $11 each", "One day: 5 leads at about $2 each", "Coached through his first campaign"],
         logo: "/images/logos/caf-pressure-washing.jpg",
         proof: [{ src: "/images/proof/caf-pressure-washing.png", alt: "CAF Pressure Washing Meta Ads Manager results" }],
         reviewId: "sam-hoffensetz",
         video: { url: "https://www.youtube.com/shorts/5wAWkU_4ZQo", youtubeId: "5wAWkU_4ZQo", platform: "YouTube" },
+        emails: [
+            { text: "This month's revenue from the ads will be $8,114.32.", author: "Sam Hoffensetz", date: "2026-09-28", subject: "September Revenue" },
+            { text: "I turned the ads off today. Super happy with how they went.", author: "Sam Hoffensetz", date: "2026-09-28", subject: "September Revenue" },
+            { text: "I even had one day with 5 leads come in so it was like $2 per lead for the day which is nuts.", author: "Sam Hoffensetz", date: "2026-09-28", subject: "Re: September Revenue" },
+        ],
         mainSiteUrl: main("caf-pressure-washing"),
         adsManager: { asOf: "November 2026", items: [{ label: "Total ad spend", value: "$1,200" }, { label: "Leads", value: "109" }, { label: "Cost per lead", value: "$11.01" }] },
     },
@@ -149,17 +156,17 @@ export const CASE_STUDIES: CaseStudy[] = [
         client: "Anthony",
         industry: "Painting",
         service: "facebook-ads",
-        headline: "Fully booked in the first month, with $50K of work lined up",
-        stat: "$50K lined up",
-        description: "Took Anthony's painting business from quiet to fully booked in the first month, with $50,000 of work lined up behind it.",
+        headline: "Booked out three months ahead",
+        stat: "Booked 3 months",
+        description: "Anthony didn't believe ads would work. A month in, he was booked out three months ahead, in his own words. His first $196 of ad spend turned into $6,500 of closed jobs.",
         whatWasDone:
             "Launched local Meta Ads aimed at homeowners ready to paint, using simple before/after creative and a quote request that goes straight to Anthony's phone. Every enquiry gets a fast follow-up so nothing goes cold.",
         metrics: [
-            { label: "Time to fully booked", value: "1 month" },
-            { label: "Work lined up", value: "$50,000" },
+            { label: "Closed from first $196 of ads", value: "$6,500" },
             { label: "Booked ahead", value: "3 months" },
+            { label: "Leads", value: "120" },
         ],
-        highlights: ["Fully booked in the first month", "$50,000 of work lined up", "Booked out three months ahead", "Quote requests straight to his phone"],
+        highlights: ["Booked out three months ahead (Anthony's review)", "$6,500 of closed jobs from his first $196 of ads", "120 leads at about $21 each", "Quote requests straight to his phone"],
         logo: "/images/logos/richies-painting.png",
         proof: [
             { src: "/images/proof/richies-painting.png", alt: "Richie's Painting Service Meta Ads Manager results" },
@@ -200,18 +207,18 @@ export const CASE_STUDIES: CaseStudy[] = [
         client: "Joe",
         industry: "Carpet cleaning",
         service: "facebook-ads",
-        headline: "4,238 leads at $9 each over ten months of ads",
-        stat: "4,238 leads",
-        description: "Cleana Carpets has had 4,238 leads from Meta ads at $9.19 each. Their first $19,000 of ad spend brought in $77,000 in revenue, a 4x return on $400 average jobs.",
+        headline: "$115K in revenue from a $21K ad campaign",
+        stat: "5.5x ROAS",
+        description: "Cleana's main Meta campaign has spent $21,000 and brought in $115,000 in revenue. Across ten months of ads, Cleana has had 4,238 leads at $9.19 each.",
         whatWasDone:
             "Local Meta ads aimed at homes and businesses in the areas Cleana cover, with new creative tested all the time so the ads don't go stale. Leads come through a short form and get followed up fast, which keeps the cost per lead around $10.",
         metrics: [
-            { label: "First $19K of ad spend", value: "$77,000 revenue" },
-            { label: "Return on that spend", value: "4x" },
-            { label: "Cost per lead", value: "$10" },
-            { label: "Avg job value", value: "$400" },
+            { label: "\u201cAd Launch\u201d campaign spend", value: "$21,000" },
+            { label: "Revenue from it", value: "$115,000" },
+            { label: "Leads, all campaigns", value: "4,238" },
+            { label: "Cost per lead", value: "$9.19" },
         ],
-        highlights: ["$77,000 in revenue from $19,000 in ad spend", "4x return at high scale", "Averaging $10 a lead", "$400 average job value"],
+        highlights: ["$115,000 in revenue from a $21,000 campaign", "4,238 leads in ten months", "$9.19 average cost per lead", "Still running, with new creative tested all the time"],
         logo: "/images/logos/cleana-carpets.webp",
         proof: [
             { src: "/images/proof/cleana-carpets.png", alt: "Cleana Carpets Meta Ads Manager results" },
@@ -331,17 +338,17 @@ export const CASE_STUDIES: CaseStudy[] = [
         client: "Wild Landscape Co",
         industry: "Landscaping",
         service: "websites",
-        headline: "$110K in organic jobs in the first 6 months",
+        headline: "$110K in organic jobs in the first 8 months",
         stat: "$110K in jobs",
-        description: "A portfolio site that's closed $110,000 in organic jobs in the first 6 months since launch.",
+        description: "A portfolio site that brought in $30,000 of work in its first week and $110,000 over its first eight months, all from people finding it on Google.",
         whatWasDone:
             "A custom site that leads with their best projects, aimed at homeowners after high-end landscaping. Every project page makes it easy to go from looking at the work to asking for a quote.",
         metrics: [
-            { label: "Organic revenue", value: "$110,000" },
-            { label: "Timeframe", value: "6 months" },
+            { label: "First week", value: "$30,000" },
+            { label: "First 8 months", value: "$110,000" },
             { label: "Local SEO position", value: "Top 3" },
         ],
-        highlights: ["$110,000 in organic jobs in 6 months", "Project galleries that show off the work", "Aimed at high-end residential clients", "Set up for local SEO"],
+        highlights: ["$30,000 of work in the first week", "$110,000 in organic jobs in 8 months", "Project galleries that show off the work", "Set up for local SEO"],
         logo: "/images/logos/wild-landscape-co.webp",
         proof: [{ src: "/images/proof/wild-landscape-co.png", alt: "Wild Landscape Co website results" }],
         siteImage: "/images/sites/wild-landscape-co.webp",
@@ -418,15 +425,21 @@ export const CASE_STUDIES: CaseStudy[] = [
 ];
 
 /** Other website builds, shown as a portfolio strip (no outcome data yet). */
-export const OTHER_BUILDS = [
+export const OTHER_BUILDS: { company: string; note: string; url: string; image: string; quote?: { text: string; author: string; date: string } }[] = [
     { company: "Euro Chiptuning Solutions", note: "125 suburb + service pages, Melbourne", url: "https://eurochiptuning.com.au/", image: "/images/sites/euro-chiptuning.webp" },
     { company: "Chase Create", note: "108 local pages, Sunshine Coast outdoor builder", url: "https://chasecreate.com.au/", image: "/images/sites/chase-create.webp" },
     { company: "SDL Creations", note: "Award-winning Sydney landscaper", url: "https://sdlcreations.webbdomain.com.au/", image: "/images/sites/sdl-creations.webp" },
-    { company: "IGLA Australia", note: "National vehicle security brand", url: "https://www.igla.com.au/", image: "/images/sites/igla.webp" },
+    {
+        company: "IGLA Australia",
+        note: "National vehicle security brand",
+        url: "https://www.igla.com.au/",
+        image: "/images/sites/igla.webp",
+        quote: { text: "Mate, what can I say?! You have absolutely smashed it. I absolutely love it. I appreciate the effort my man!", author: "John, Euro Chiptuning Solutions & IGLA Australia", date: "2026-10-03" },
+    },
 ];
 
 export const caseStudyBySlug = (slug: string) => CASE_STUDIES.find((c) => c.slug === slug);
-export const FEATURED_CASE_SLUGS = ["rks-renovations", "pristine-pressure-washing", "brisbathco", "clean-coast-pressure-washing", "cleana-carpets", "wild-landscape-co"];
+export const FEATURED_CASE_SLUGS = ["cleana-carpets", "pristine-pressure-washing", "rks-renovations", "brisbathco", "clean-coast-pressure-washing", "wild-landscape-co"];
 
 export const VIDEO_TESTIMONIALS = CASE_STUDIES.filter((c) => c.video?.youtubeId).map((c) => ({
     slug: c.slug,

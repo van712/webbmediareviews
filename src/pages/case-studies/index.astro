@@ -14,7 +14,7 @@ const sites = CASE_STUDIES.filter((c) => c.service === "websites");
 
 <Base
     title="Webb Media Results & Case Studies | Real Client Results"
-    description={`${CASE_STUDIES.length} Webb Media case studies with real numbers: Facebook ads returns up to 88.6x and websites that brought in $1.1M in quotes. See what Webb Media did for each client.`}
+    description={`${CASE_STUDIES.length} Webb Media case studies with real numbers: Facebook ads returns up to 15x and websites that brought in $1.1M in quotes. See what Webb Media did for each client.`}
     schema={[breadcrumbLd(crumbs)]}
 >
     <PageHero
@@ -50,6 +50,12 @@ const sites = CASE_STUDIES.filter((c) => c.service === "websites");
                             <img src={b.image} alt={`${b.company} website by Webb Media`} loading="lazy" {...sizeOf(b.image)} />
                             <strong>{b.company}</strong>
                             <span class="muted">{b.note}</span>
+                            {b.quote && (
+                                <blockquote class="bq">
+                                    “{b.quote.text}”
+                                    <cite>{b.quote.author}, by email, {new Date(b.quote.date).toLocaleDateString("en-AU", { month: "short", year: "numeric" })}</cite>
+                                </blockquote>
+                            )}
                         </a>
                     ))
                 }
@@ -81,6 +87,20 @@ const sites = CASE_STUDIES.filter((c) => c.service === "websites");
     }
     .build span {
         font-size: 0.88rem;
+    }
+    .bq {
+        margin: 10px 0 0;
+        padding-left: 12px;
+        border-left: 3px solid var(--red);
+        font-size: 0.9rem;
+        color: #e4e4e7;
+    }
+    .bq cite {
+        display: block;
+        font-style: normal;
+        color: var(--subtle);
+        font-size: 0.78rem;
+        margin-top: 4px;
     }
     .build:hover {
         border-color: #3f3f46;
