@@ -529,6 +529,7 @@ export const OTHER_BUILDS: { company: string; note: string; url: string; image?:
         company: "CJM Lawn Care",
         note: "Website for a lawn care and outdoor maintenance business, live September 2026.",
         url: "https://cjmoutdoorsolutions.com.au/",
+        image: "/images/sites/cjm-lawn-care.webp",
         reviewId: "jessica-vella",
         quote: { text: "The website looks great thank you!", author: "Jess, CJM Lawn Care", date: "2026-09-15" },
     },
@@ -536,12 +537,14 @@ export const OTHER_BUILDS: { company: string; note: string; url: string; image?:
         company: "Maroochydore Tiling",
         note: "Website for a Sunshine Coast tiler, live June 2026.",
         url: "https://maroochydoretiling.com.au/",
+        image: "/images/sites/maroochydore-tiling.webp",
         quote: { text: "Website looks great, love it.", author: "Paul, Maroochydore Tiling", date: "2026-06-10" },
     },
     {
         company: "Kisses Detailing",
         note: "Website for a car detailing business.",
         url: "https://www.kissesdetailing.com/",
+        image: "/images/sites/kisses-detailing.webp",
     },
 ];
 
