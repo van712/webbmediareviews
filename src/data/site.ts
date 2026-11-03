@@ -31,13 +31,10 @@ export const BUSINESS = {
 };
 
 /** Public Google reviews link (from the main site's googleReviews.ts). */
-export const GOOGLE_REVIEWS_URL = "https://share.google/ckcjNuMsZhAlBhXVQ";
+export const GOOGLE_REVIEWS_URL = "https://share.google/GkEKkcg5l20CGjxP1";
 
-/**
- * TODO(van): paste the direct "write a review" link from Google Business
- * Profile → "Ask for reviews". Until then the Google reviews link is used.
- */
-export const GOOGLE_WRITE_REVIEW_URL = GOOGLE_REVIEWS_URL;
+/** Direct "write a review" link from Google Business Profile → Ask for reviews. */
+export const GOOGLE_WRITE_REVIEW_URL = "https://g.page/r/CQA0E73DDMtXEBM/review";
 
 
 export const SOCIALS = [

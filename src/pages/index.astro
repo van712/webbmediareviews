@@ -14,7 +14,7 @@ import { faqLd } from "../lib/schema";
 
 const featuredReviews = FEATURED_REVIEWS;
 const featuredCases = FEATURED_CASE_SLUGS.map((s) => caseStudyBySlug(s)!);
-const hero = reviewById("louie-smeulders") ?? FEATURED_REVIEWS[0];
+const hero = reviewById("nick-quinlan") ?? reviewById("louie-smeulders") ?? FEATURED_REVIEWS[0];
 
 const stats = [
     { value: "4,238", label: "leads at $9.19 each for Cleana Carpets (Ads Manager)" },

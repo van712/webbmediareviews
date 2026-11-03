@@ -87,6 +87,7 @@ export const CASE_STUDIES: CaseStudy[] = [
             { src: "/images/proof/messages-pristine-pressure-washing-1.jpg", alt: "Message from Pristine Pressure Washing to Van" },
             { src: "/images/proof/messages-pristine-pressure-washing-2.jpg", alt: "Second message from Pristine Pressure Washing" },
         ],
+        reviewId: "nick-quinlan",
         video: { url: "https://www.youtube.com/shorts/ipMNRP0meKE", youtubeId: "ipMNRP0meKE", platform: "YouTube" },
         mainSiteUrl: main("pristine-pressure-washing"),
         adsManager: { asOf: "November 2026", items: [{ label: "Total ad spend", value: "$8,051" }, { label: "Leads", value: "575" }, { label: "Cost per lead", value: "$14.00" }] },

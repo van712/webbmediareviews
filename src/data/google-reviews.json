@@ -1,132 +1,175 @@
 {
-  "source": "manual-seed",
-  "syncedAt": "2026-10-31",
+  "source": "manual-paste",
+  "note": "Pasted by Van from Google Business Profile on 3 Nov 2026. Dates come from Google's new-review notification emails where available, else Google's relative time. Star ratings assumed 5 (paste had no stars). Replaced by the API sync once it is set up.",
+  "syncedAt": "2026-11-03",
   "averageRating": 5,
-  "totalReviewCount": 18,
+  "totalReviewCount": 24,
   "reviews": [
     {
-      "name": "Hogan Radic",
+      "name": "Liam Quinlivan",
       "rating": 5,
-      "text": "10/10 service would absolutely recommend Van to anyone who is trying to scale a business, whether you've just started or been in business for a while. This year I decided to start my own business, it had been going okay, it was paying the bills and getting me by. But I wanted to scale and make something real.. I first heard of Van when he was cold calling as a 17year old and that impressed me and showed me he was ambitious, hard working and has perseverance. Now having worked with him he has exceeded my expectations. He's super easy to work with, friendly and most importantly great at what he does. If you're serious about scaling your business, I would seriously recommend Van.",
-      "createTime": null,
+      "text": "This Google review is actually quite funny! We thought he was competition, but we're actually bringing more value to people. Webb Media's knowledge and results are so good. I literally just pass on clients who are better fitted for myself to him, just because I know that they will be in good hands. Would highly recommend.",
+      "createTime": "2026-10-15",
+      "reply": "Haha absolute legend Liam! Both of us take client results to heart and actually care about the businesses we work with and it’s great to see. Keep the referrals coming man and I will absolutely do the same. Really appreciate the review, cheers 🤙"
+    },
+    {
+      "name": "Mitch Newton",
+      "rating": 5,
+      "text": "Joining Web Media has been an absolute game changer for our business. Before van our work was super inconsistent and we were spending more time getting work than on the tools themselves. Van doesn’t just get us leads and leave us, he cares about our businesses success, checking in on us and giving us helpful advice. It’s been less than a week since the adds have been launched and we’re already almost fully booked. 100% recommend.",
+      "createTime": "2026-10-14",
+      "reply": "Thanks for the review Mitch. Love to see it, super keen for you and Oli to scale up and stay consistent with the work 🤝\n\nReally appreciate you taking your time to give me a review, it helps out massively !"
+    },
+    {
+      "name": "Poppy Hartzenberg",
+      "rating": 5,
+      "text": "Van from Webb Media has been amazing! Running ads with the team has really helped our business out, and a few weeks into it we’re already fully booked. If you’re thinking about running ads or any media/marketing stuff, I would definitely recommend Webb Media.",
+      "createTime": "2026-10-03",
+      "reply": null
+    },
+    {
+      "name": "Nick Quinlan",
+      "rating": 5,
+      "text": "I can't recommend Van highly enough. He's worked absolute miracles for my pressure washing business.\n\nI signed with Van in June, and within 3 months our monthly revenue has quadrupled. That's actual confirmed jobs and paying clients, not a pile of low-quality leads that go nowhere. He understands local service businesses and knows how to get the right people calling.\n\nIf you're genuinely serious about building your company, Van is the best choice there is.\n\n– Nick Quinlan, owner, Pristine Pressure Washing Sunshine Coast",
+      "createTime": "2026-09-30",
+      "reply": "Thanks for the review Nick. It’s been a blast working with you and Matt so far. Some of my favourite clients (don’t tell the others). Ready to scale to those $50k months !!"
+    },
+    {
+      "name": "Jessica Vella",
+      "rating": 5,
+      "text": "Van was very responsive and professional and created a beautiful website for our business. Thank you!!",
+      "createTime": "2026-09-25",
+      "reply": null
+    },
+    {
+      "name": "John Kearns",
+      "rating": 5,
+      "text": "⭐⭐⭐⭐⭐ Van the Man – Webb Media\n\nI honestly can’t recommend Van from Webb Media enough. I’ve only been working with Van for a few weeks, and already he has helped take my pressure washing business from almost nothing to something way beyond what I expected.\n\nI’ve dealt with other marketing companies in the past and spent good money on Facebook and Instagram advertising that simply didn’t deliver. Working with Van has been completely different. He genuinely cares about seeing your business succeed, and the results I’ve had in such a short amount of time speak for themselves.\n\nWhat has impressed me even more is that Van has gone above and beyond his job description. He actually took the time to come out to one of my jobs and do some professional filming and content for the business. That meant a lot to me because I’ve never really been comfortable being in front of the camera. Van has helped me build up that confidence, get outside my comfort zone and understand how important it is to put yourself out there when growing a business.\n\nIn only a few weeks, what we’ve achieved together has made this whole journey feel like a success already. The enquiries are coming through, I’m booking more work, and my business is growing faster than I expected.\n\nIf you own a business and you’re struggling with marketing or getting results from Facebook and Instagram ads, I highly recommend Van the Man at Webb Media. He’s an amazing young bloke who genuinely wants to see his clients succeed and become profitable.\n\nThanks for everything so far, Van. I’m genuinely excited to see what you bring to the table next and where we can take All-Bright Pressure Cleaning in the near future. This is only the beginning! 💪🔥",
+      "createTime": "2026-09-22",
+      "reply": "Thanks John! Your words mean a lot man. It’s been such a pleasure helping you so far and this is only just the start. Get ready for your calendar to be fully booked out in no time 🤝🤝\n\nThanks legend! Keen to see what we can do together"
+    },
+    {
+      "name": "Sam Hoffensetz",
+      "rating": 5,
+      "text": "Van helped me launch my first Meta ad campaign for my pressure washing business and it’s been unreal. The bootcamp he ran cut straight to the point, no fluff, just what actually works and what doesn’t. Genuinely learned more from him in a couple of sessions than trying to figure it out myself for months. Now I’ve got skills and insight I can keep using going forward. Highly recommend if you want straight-up advice and real results.",
+      "createTime": "2026-08-16",
+      "reply": "Thanks for the review Sam it means a lot bro! It’s been awesome seeing this take off for you and I’m glad my coaching has helped you.\n\nSuper excited to see you scale even bigger and build your team :)"
+    },
+    {
+      "name": "Anthony Gibb",
+      "rating": 5,
+      "text": "I’ve been working with Web media for a month now. I didn’t believe him at first for it to work but I’ve been getting booked out for three months now and I now believe anything he says.",
+      "createTime": "2026-07-13",
       "reply": null
     },
     {
       "name": "Louie Smeulders",
       "rating": 5,
-      "text": "Absolutely stoked with the results, since getting Van on board, my business skyrocketed. He brought in over 50 quality leads within the first few days pretty much booking my calendar out, it takes a lot of stress getting out trying to find new customers, but with Vans help the work comes straight to me. He so easy to deal with, knows exactly what he's doing, and actually wants to see you and your business succeed, if your thinking about investing in but marketing but aren't sure, this blokes the man, don't hesitate with him!",
-      "createTime": null,
-      "reply": null
+      "text": "Absolutely stoked with the results, since getting Van on board, my business skyrocketed. He brought in over 50 quality leads within the first few days pretty much booking my calendar out, it takes a lot of stress getting out trying to find new customers, but with Vans help the work comes straight to me.\n\nHe so easy to deal with, knows exactly what he’s doing, and actually wants to see you and your business succeed, if your thinking about investing in but marketing but aren’t sure, this blokes the man, don’t hesitate with him!",
+      "createTime": "2026-07-07",
+      "reply": "That means a lot bro! It’s great seeing you getting booked out. Keen to keep scaling up with you. Thanks again for the review"
     },
     {
-      "name": "Anthony Gibb",
+      "name": "Hogan Radic",
       "rating": 5,
-      "text": "I've been working with Web media for a month now. I didn't believe him at first for it to work but I've been getting booked out for three months now and I now believe anything he says.",
-      "createTime": null,
-      "reply": null
-    },
-    {
-      "name": "Sam Hoffensetz",
-      "rating": 5,
-      "text": "Van helped me launch my first Meta ad campaign for my pressure washing business and it's been unreal. The bootcamp he ran cut straight to the point, no fluff, just what actually works and what doesn't. Genuinely learned more from him in a couple of sessions than trying to figure it out myself for months. Now I've got skills and insight I can keep using going forward. Highly recommend if you want straight-up advice and real results.",
-      "createTime": null,
-      "reply": null
+      "text": "10/10 service would absolutely recommend Van to anyone who is trying to scale a business, whether you’ve just started or been in business for a while.\n\nThis year I decided to start my own business, it had been going okay, it was paying the bills and getting me by. But I wanted to scale and make something real.. I first heard of Van when he was cold calling as a 17year old and that impressed me and showed me he was ambitious, hard working and has perseverance.\n\nNow having worked with him he has exceeded my expectations. He’s super easy to work with, friendly and most importantly great at what he does.\n\nIf you’re serious about scaling your business, I would seriously recommend Van.",
+      "createTime": "2026-06-25",
+      "reply": "Hey Hogan! I really appreciate you taking the time to leave this review. I'm super keen to continue getting results for Clean Coast and scale this up together.\n\nThanks heaps bro,\nVan (Webb Media)"
     },
     {
       "name": "John Sav",
       "rating": 5,
-      "text": "Van contacted me offering to rebuild my website and gain some more business. I had numerous offerings prior to Van contacting me, but I was never really interested. I'm not sure why, but Van just seemed right for the job and so far, he has not disappointed. His quality of work, communication and delivery has exceeded everything I was expecting. If you are looking to for web design, Google or Meta ads or anything alike, Van is extremely talented and can get your business moving in the right direction. Thank you Van and the Webb Media team.",
-      "createTime": null,
-      "reply": null
+      "text": "Van contacted me offering to rebuild my website and gain some more business. I had numerous offerings prior to Van contacting me, but I was never really interested. I'm not sure why, but Van just seemed right for the job and so far, he has not disappointed. His quality of work, communication and delivery has exceeded everything I was expecting.\n\nIf you are looking to for web design, Google or Meta ads or anything alike, Van is extremely talented and can get your business moving in the right direction. Thank you Van and the Webb Media team.",
+      "createTime": "2026-06-04",
+      "reply": "Hey John,\n\nThank you so much for your kind words and feedback on our services :)\nI'm glad everything is exceeding your expectations and I intend to continue delivering a top quality service for you and your company. Really appreciate your review mate!"
     },
     {
-      "name": "Shaun",
+      "name": "Info Noble Bathrooms",
       "rating": 5,
-      "text": "Vans help was a massive stress release, not having to worry about the headache of ads or building a website saved me much time and the return on investment was immediate. Will be using Webbmedia to build out websites for any future projects as well.",
-      "createTime": null,
-      "reply": null
-    },
-    {
-      "name": "Eddie Phillips",
-      "rating": 5,
-      "text": "Unreal service from Van. Highly recommend. Easy to work with, created 2 websites for me and has an appreciation for working with a small business. The attention to detail is great and price point is well worth it when compared to other companies with lock in contracts that just don't provide the value Van does.",
-      "createTime": null,
-      "reply": null
-    },
-    {
-      "name": "Rosemary Fung",
-      "rating": 5,
-      "text": "Highly recommend this little company. Van took over our advertising 8 months ago couldn't be happier always available to make changes and makes it his business to understand yours.",
-      "createTime": null,
-      "reply": null
-    },
-    {
-      "name": "TnbQuan",
-      "rating": 5,
-      "text": "Van was super professional and the campaign creative he made me honestly blew me away, I'm fully booked out as well would highly recommend 👍",
-      "createTime": null,
-      "reply": null
-    },
-    {
-      "name": "Munya Johnstone",
-      "rating": 5,
-      "text": "I would highly recommend Webb Media to anyone looking to run Facebook ads. Van has done a fantastic job creating high-quality, engaging video creatives for my business. Super professional, easy to work with, and the results speak for themselves",
-      "createTime": null,
-      "reply": null
-    },
-    {
-      "name": "Andrew",
-      "rating": 5,
-      "text": "Excellent work, great service and very professional. Thank you to Van and the team. I loved the effort put into the initial design, before they even charged any money, highly recommended.",
-      "createTime": null,
-      "reply": null
-    },
-    {
-      "name": "Isaac Hill",
-      "rating": 5,
-      "text": "We had a really great experience with Webb Media. They built us a fantastic website. Made all of my ideas and wishes come true. Highly recommend for any media, marketing or web development. Thank you Webb team.",
-      "createTime": null,
-      "reply": null
-    },
-    {
-      "name": "Christian Greenhalgh",
-      "rating": 5,
-      "text": "Provides good quality leads through meta ads and is motivated to always push for growth and quality",
-      "createTime": null,
-      "reply": null
-    },
-    {
-      "name": "Jack Young",
-      "rating": 5,
-      "text": "Van from Webb media has been great to deal with, super friendly, knowledgeable and reasonably priced. His website designs and marketing skills are 10/10. Highly recommend",
-      "createTime": null,
-      "reply": null
-    },
-    {
-      "name": "Giulio Rocco",
-      "rating": 5,
-      "text": "Excellent service and incredibly easy to work with. Highly recommend to anyone looking to grow their digital presence.",
-      "createTime": null,
-      "reply": null
-    },
-    {
-      "name": "Ben McGaughran",
-      "rating": 5,
-      "text": "Van was extremely knowledgable around websites and marketing, Highly recommend him!",
-      "createTime": null,
-      "reply": null
-    },
-    {
-      "name": "David Forgan",
-      "rating": 5,
-      "text": "Web Media were great to deal with and im very happy with the results",
-      "createTime": null,
+      "text": "Excellent work, great service and very professional. Thank you to Van and the team. I loved the effort put into the initial design, before they even charged any money, highly recommended.\n\nKind Regards,\nAndrew\nNoble Bathrooms",
+      "createTime": "2026-05-25",
       "reply": null
     },
     {
       "name": "Waheeb Irshad",
       "rating": 5,
       "text": "Had a great meeting with Van, very knowledgeable bloke and offered amazing packages! Look forward to working with Van from Webb Media soon!",
+      "createTime": "2026-04-21",
+      "reply": null
+    },
+    {
+      "name": "Jack Young",
+      "rating": 5,
+      "text": "Van from Webb media has been great to deal with, super friendly, knowledgeable and reasonably priced.\n\nHis website designs and marketing skills are 10/10\n\nHighly recommend",
+      "createTime": "2026-04-09",
+      "reply": null
+    },
+    {
+      "name": "Giulio Rocco",
+      "rating": 5,
+      "text": "Excellent service and incredibly easy to work with. Highly recommend to anyone looking to grow their digital presence.",
+      "createTime": "2026-04-03",
+      "reply": null
+    },
+    {
+      "name": "Eddie Phillips",
+      "rating": 5,
+      "text": "Unreal service from Van. Highly recommend.\nEasy to work with, created 2 websites for me and has an appreciation for working with a small business. The attention to detail is great and price point is well worth it when compared to other companies with lock in contracts that just don't provide the value Van does.",
+      "createTime": "2026-04-02",
+      "reply": null
+    },
+    {
+      "name": "Christian Greenhalgh",
+      "rating": 5,
+      "text": "Provides good quality leads through meta ads and is motivated to always push for growth and quality",
+      "createTime": "2026-03-31",
+      "reply": null
+    },
+    {
+      "name": "David Forgan",
+      "rating": 5,
+      "text": "Web Media were great to deal with and im very happy with the results",
+      "createTime": "2026-03-30",
+      "reply": null
+    },
+    {
+      "name": "Shaun",
+      "rating": 5,
+      "text": "Vans help was a massive stress release, not having to worry about the headache of ads or building a website saved me much time and the return on investment was immediate. Will be using Webbmedia to build out websites for any future projects as well.",
+      "createTime": "2026-03-15",
+      "reply": null
+    },
+    {
+      "name": "Munya Johnstone",
+      "rating": 5,
+      "text": "I would highly recommend Webb Media to anyone looking to run Facebook ads. Van has done a fantastic job creating high-quality, engaging video creatives for my business. Super professional, easy to work with, and the results speak for themselves",
+      "createTime": "2026-02-25",
+      "reply": null
+    },
+    {
+      "name": "Rosemary Fung",
+      "rating": 5,
+      "text": "Highly recommend this little company. Van took over our advertising 8 months ago couldn’t be happier always available to make changes and makes it his business to understand yours.",
+      "createTime": "2026-02-17",
+      "reply": null
+    },
+    {
+      "name": "TnbQuan",
+      "rating": 5,
+      "text": "Van was super professional and the campaign creative he made me honestly blew me away, I’m fully booked out as well would highly recommend 👍",
+      "createTime": "2025-11-30",
+      "reply": null
+    },
+    {
+      "name": "Isaac Hill",
+      "rating": 5,
+      "text": "We had a really great experience with Webb Media. They built us a fantastic website. Made all of my ideas and wishes come true. Highly recommend for any media, marketing or web development.\nThank you Webb team.",
+      "createTime": "2025-11-01",
+      "reply": null
+    },
+    {
+      "name": "Ben McGaughran",
+      "rating": 5,
+      "text": "Van was extremely knowledgable around websites and marketing, Highly recommend him!",
       "createTime": null,
       "reply": null
     }

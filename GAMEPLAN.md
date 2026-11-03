@@ -40,11 +40,13 @@ A Google review widget (Elfsight, Trustindex, etc.) wouldn't do this job. It loa
 ### Trust rules built into the code
 
 - Every written client review is shown, whatever its rating.
-- Reviews from non-clients and related parties are excluded, and the site says so publicly. Currently excluded:
+- All 24 Google reviews are loaded from Van's paste (3 Nov), with dates and Webb Media's replies. **19 client reviews are shown.** Reviews from non-clients and related parties are excluded, and the site says so publicly. The excluded 5 are:
   - Giulio and Ben (Venture Ascend partners)
   - Waheeb (prospect)
   - Poppy (personal connection)
   - Liam (another agency)
+- The site's review count and 5.0 average are worked out from the 19 shown, not Google's headline number.
+- New reviews are tagged and linked: Nick Quinlan (Pristine, now the home page quote), Mitch Newton (KN Exteriors), John Kearns (All-Bright Pressure Cleaning) and Jessica Vella (CJM Lawn Care).
 - Case-study quotes that only appear on webbmedia.com.au, with no email or video to back them up, are left off. These are the quotes for Joe, Munya, Quinton, Christian, Rabih and Nick & Matt, and the three "Team" quotes.
 - Each Meta ads case study has a "Checked in Meta Ads Manager (Nov 2026)" box with lifetime spend, leads and cost per lead.
 

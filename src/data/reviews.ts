@@ -55,7 +55,11 @@ const TAGS: Record<string, Tag> = {
     TnbQuan: { services: ["facebook-ads"], featured: true },
     // Business links below come from Webb Media's client tracker and case-study docs (Nov 2026).
     "Munya Johnstone": { services: ["facebook-ads"], business: "All Pro Pressure Washing", caseStudy: "all-pro-pressure-washing" },
-    Andrew: { services: ["websites"], business: "Noble Bathrooms" },
+    "Info Noble Bathrooms": { services: ["websites"], business: "Noble Bathrooms" },
+    "Nick Quinlan": { services: ["facebook-ads"], business: "Pristine Pressure Washing", caseStudy: "pristine-pressure-washing", featured: true },
+    "Mitch Newton": { services: ["facebook-ads"], business: "KN Exteriors", featured: true },
+    "John Kearns": { services: ["facebook-ads"], business: "All-Bright Pressure Cleaning", featured: true },
+    "Jessica Vella": { services: ["websites"], business: "CJM Lawn Care" },
     "Isaac Hill": { services: ["websites"], business: "Wild Landscape Co", caseStudy: "wild-landscape-co" },
     "Christian Greenhalgh": { services: ["facebook-ads"], business: "Reset Exterior Cleaning", caseStudy: "reset-exterior-cleaning" },
     "Jack Young": { services: ["websites", "facebook-ads"] },
@@ -72,9 +76,8 @@ const EXCLUDED: { match: (r: { name: string; text: string }) => boolean; reason:
     { match: (r) => r.name === "Giulio Rocco", reason: "business partner (Venture Ascend)" },
     { match: (r) => r.name === "Ben McGaughran", reason: "business partner (Venture Ascend)" },
     { match: (r) => r.name === "Waheeb Irshad", reason: "prospect after one meeting, not a client" },
-    // TODO(van): swap these for exact Google display names once the sync has run.
-    { match: (r) => /^poppy\b/i.test(r.name), reason: "personal connection to Van" },
-    { match: (r) => /^liam\b/i.test(r.name) && /competition/i.test(r.text), reason: "works at another agency" },
+    { match: (r) => r.name === "Poppy Hartzenberg", reason: "personal connection to Van" },
+    { match: (r) => r.name === "Liam Quinlivan", reason: "runs another agency (referral partner)" },
 ];
 
 const slug = (s: string) =>
@@ -107,8 +110,15 @@ export const REVIEWS: Review[] = withText
     .sort((a, b) => (b.createTime ?? "").localeCompare(a.createTime ?? ""));
 
 /** Total on Google, including star-only ratings with no written review. */
-export const REVIEW_COUNT: number = synced.totalReviewCount;
-export const AVERAGE_RATING: number = synced.averageRating;
+/**
+ * Count and average are worked out from the client reviews actually shown on
+ * this site (related-party reviews excluded), not Google's headline figure,
+ * so every number on the site matches what readers can count on the page.
+ */
+export const REVIEW_COUNT: number = REVIEWS.length;
+export const AVERAGE_RATING: number = Math.round((REVIEWS.reduce((sum, r) => sum + r.rating, 0) / Math.max(REVIEWS.length, 1)) * 10) / 10;
+/** Google's own total, which also counts star-only and excluded reviews. */
+export const GOOGLE_TOTAL: number = synced.totalReviewCount;
 export const REVIEWS_SYNCED_AT: string = synced.syncedAt;
 /** e.g. "November 2026" */
 export const REVIEWS_SYNCED_LABEL = new Date(synced.syncedAt).toLocaleDateString("en-AU", { month: "long", year: "numeric", timeZone: "Australia/Brisbane" });
@@ -126,6 +136,9 @@ export const FEATURED_REVIEWS: Review[] = (() => {
     return tagged.length >= 3 ? tagged : REVIEWS.slice(0, 9);
 })();
 
+/** Curly and straight apostrophes/quotes compare equal, so pull quotes still match Google's text. */
+const norm = (s: string) => s.replace(/[‘’]/g, "'").replace(/[“”]/g, '"');
+
 /** Cuts a review at a word boundary and marks the cut with an ellipsis (never rewrites it). */
 export const excerpt = (text: string, max = 320) => {
     if (text.length <= max) return text;
@@ -141,6 +154,7 @@ const RAW_THEMES: { title: string; body: string; quotes: { reviewId: string; tex
         quotes: [
             { reviewId: "rosemary-fung", text: "always available to make changes and makes it his business to understand yours." },
             { reviewId: "louie-smeulders", text: "He so easy to deal with, knows exactly what he's doing, and actually wants to see you and your business succeed" },
+            { reviewId: "mitch-newton", text: "Van doesn't just get us leads and leave us, he cares about our businesses success, checking in on us and giving us helpful advice." },
         ],
     },
     {
@@ -149,6 +163,7 @@ const RAW_THEMES: { title: string; body: string; quotes: { reviewId: string; tex
         quotes: [
             { reviewId: "louie-smeulders", text: "He brought in over 50 quality leads within the first few days pretty much booking my calendar out" },
             { reviewId: "anthony-gibb", text: "I've been getting booked out for three months now" },
+            { reviewId: "nick-quinlan", text: "within 3 months our monthly revenue has quadrupled" },
         ],
     },
     {
@@ -157,6 +172,7 @@ const RAW_THEMES: { title: string; body: string; quotes: { reviewId: string; tex
         quotes: [
             { reviewId: "tnbquan", text: "the campaign creative he made me honestly blew me away" },
             { reviewId: "munya-johnstone", text: "Van has done a fantastic job creating high-quality, engaging video creatives for my business." },
+            { reviewId: "john-kearns", text: "He actually took the time to come out to one of my jobs and do some professional filming and content for the business." },
         ],
     },
     {
@@ -174,6 +190,8 @@ export const THEMES = RAW_THEMES.map((t) => ({
     ...t,
     quotes: t.quotes.flatMap((q) => {
         const review = reviewById(q.reviewId);
-        return review && review.text.includes(q.text) ? [{ ...q, review }] : [];
+        const at = review ? norm(review.text).indexOf(norm(q.text)) : -1;
+        // Show the exact characters from the review, not our copy of them.
+        return review && at >= 0 ? [{ ...q, text: review.text.slice(at, at + q.text.length), review }] : [];
     }),
 })).filter((t) => t.quotes.length > 0);
