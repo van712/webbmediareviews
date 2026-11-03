@@ -5,7 +5,7 @@
 
 export const SITE = {
     name: "Webb Media Reviews",
-    url: "https://webbmediareviews.com.au",
+    url: "https://www.webbmediareviews.com.au",
     locale: "en_AU",
     defaultTitle: "Webb Media Reviews | Real Client Reviews & Results",
     defaultDescription:

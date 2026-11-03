@@ -49,8 +49,8 @@ Put them in `public/images/`, then run `python3 scripts/image-sizes.py` so pages
 
 1. **Vercel:** in the "Webb Media's projects" team, click Add New → Project, import `van712/webbmediareviews` and press Deploy. It auto-detects Astro, so no settings are needed.
 2. **Domains:** go to Project → Settings → Domains and add both domains:
-   - `webbmediareviews.com.au` (primary)
-   - `www.webbmediareviews.com.au`, set to redirect to the primary
+   - `www.webbmediareviews.com.au` (primary; the site's canonical URLs use www)
+   - `webbmediareviews.com.au`, set to redirect to www
 3. **GoDaddy DNS:** go to My Products → `webbmediareviews.com.au` → DNS. Make these changes:
    - **Delete** both existing `A @` records: `3.33.130.190` and `15.197.148.33`. These are GoDaddy's parking page.
    - **Add** these 2 records:
@@ -64,4 +64,4 @@ Put them in `public/images/`, then run `python3 scripts/image-sizes.py` so pages
    - If **Forwarding** is turned on for the domain, turn it off.
 
    These values come from Vercel's recommended config for this domain (3 Nov 2026, for the webbmediareviews project). If Vercel's Domains page shows different values, use the ones it shows.
-4. **Google Search Console:** add the site and submit `https://webbmediareviews.com.au/sitemap-index.xml`.
+4. **Google Search Console:** add the site and submit `https://www.webbmediareviews.com.au/sitemap-index.xml` (add the property as a Domain property for `webbmediareviews.com.au`).

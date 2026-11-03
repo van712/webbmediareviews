@@ -3,7 +3,7 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://webbmediareviews.com.au",
+  site: "https://www.webbmediareviews.com.au",
   trailingSlash: "always",
   build: { format: "directory" },
   integrations: [
