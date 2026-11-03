@@ -1,12 +1,15 @@
 /**
  * Google reviews for Webb Media.
  *
- * RULE: review text is VERBATIM from Google. Never edit, shorten inside the
- * data, or "tidy up" a review. Typos stay. If a review isn't on Google (or
- * another public platform we can link to), it doesn't go in this file.
+ * The review text lives in `google-reviews.json`, written by
+ * `scripts/sync-google-reviews.mjs` straight from the Google Business Profile
+ * API (see README → "Google reviews sync"). It is VERBATIM: never edit it by
+ * hand except to seed it. Every review with text is shown, whatever its rating.
  *
- * Source: van712/webbmedia src/data/googleReviews.ts (synced October 2026).
+ * This file only adds our own labels on top (which service, which business,
+ * which case study), matched by the reviewer's name as shown on Google.
  */
+import synced from "./google-reviews.json";
 
 export type Service = "facebook-ads" | "websites" | "coaching";
 
@@ -14,15 +17,15 @@ export interface Review {
     id: string;
     name: string;
     text: string;
-    rating: 1 | 2 | 3 | 4 | 5;
+    rating: number;
     source: "Google";
-    /** What the client worked with us on, read from the review itself. */
+    /** ISO date the review was posted, when the sync provides it. */
+    createTime: string | null;
+    /** Webb Media's public reply on Google, if any. */
+    reply: string | null;
     services: Service[];
-    /** Client's business, only where we know it for certain. */
     business?: string;
-    /** Matching case study slug, if there is one. */
     caseStudy?: string;
-    /** Show on the home page. */
     featured?: boolean;
 }
 
@@ -32,183 +35,93 @@ export const SERVICE_LABELS: Record<Service, string> = {
     coaching: "Ads coaching",
 };
 
-export const REVIEWS: Review[] = [
-    {
-        id: "hogan-radic",
-        name: "Hogan Radic",
-        business: "Clean Coast Pressure Washing",
-        caseStudy: "clean-coast-pressure-washing",
-        services: ["facebook-ads"],
-        featured: true,
-        rating: 5,
-        source: "Google",
-        text: "10/10 service would absolutely recommend Van to anyone who is trying to scale a business, whether you've just started or been in business for a while. This year I decided to start my own business, it had been going okay, it was paying the bills and getting me by. But I wanted to scale and make something real.. I first heard of Van when he was cold calling as a 17year old and that impressed me and showed me he was ambitious, hard working and has perseverance. Now having worked with him he has exceeded my expectations. He's super easy to work with, friendly and most importantly great at what he does. If you're serious about scaling your business, I would seriously recommend Van.",
-    },
-    {
-        id: "louie-smeulders",
-        name: "Louie Smeulders",
-        business: "Mobile Mates Detailing",
-        caseStudy: "mobile-mates-detailing",
-        services: ["facebook-ads"],
-        featured: true,
-        rating: 5,
-        source: "Google",
-        text: "Absolutely stoked with the results, since getting Van on board, my business skyrocketed. He brought in over 50 quality leads within the first few days pretty much booking my calendar out, it takes a lot of stress getting out trying to find new customers, but with Vans help the work comes straight to me. He so easy to deal with, knows exactly what he's doing, and actually wants to see you and your business succeed, if your thinking about investing in but marketing but aren't sure, this blokes the man, don't hesitate with him!",
-    },
-    {
-        id: "anthony-gibb",
-        name: "Anthony Gibb",
-        business: "Richie's Painting Service",
-        caseStudy: "richies-painting",
-        services: ["facebook-ads"],
-        featured: true,
-        rating: 5,
-        source: "Google",
-        text: "I've been working with Web media for a month now. I didn't believe him at first for it to work but I've been getting booked out for three months now and I now believe anything he says.",
-    },
-    {
-        id: "sam-hoffensetz",
-        name: "Sam Hoffensetz",
-        business: "CAF Pressure Washing",
-        caseStudy: "caf-pressure-washing",
-        services: ["facebook-ads", "coaching"],
-        featured: true,
-        rating: 5,
-        source: "Google",
-        text: "Van helped me launch my first Meta ad campaign for my pressure washing business and it's been unreal. The bootcamp he ran cut straight to the point, no fluff, just what actually works and what doesn't. Genuinely learned more from him in a couple of sessions than trying to figure it out myself for months. Now I've got skills and insight I can keep using going forward. Highly recommend if you want straight-up advice and real results.",
-    },
-    {
-        id: "john-sav",
-        name: "John Sav",
-        services: ["websites"],
-        featured: true,
-        rating: 5,
-        source: "Google",
-        text: "Van contacted me offering to rebuild my website and gain some more business. I had numerous offerings prior to Van contacting me, but I was never really interested. I'm not sure why, but Van just seemed right for the job and so far, he has not disappointed. His quality of work, communication and delivery has exceeded everything I was expecting. If you are looking to for web design, Google or Meta ads or anything alike, Van is extremely talented and can get your business moving in the right direction. Thank you Van and the Webb Media team.",
-    },
-    {
-        id: "shaun",
-        name: "Shaun",
-        services: ["facebook-ads", "websites"],
-        featured: true,
-        rating: 5,
-        source: "Google",
-        text: "Vans help was a massive stress release, not having to worry about the headache of ads or building a website saved me much time and the return on investment was immediate. Will be using Webbmedia to build out websites for any future projects as well.",
-    },
-    {
-        id: "eddie-phillips",
-        name: "Eddie Phillips",
-        services: ["websites"],
-        featured: true,
-        rating: 5,
-        source: "Google",
-        text: "Unreal service from Van. Highly recommend. Easy to work with, created 2 websites for me and has an appreciation for working with a small business. The attention to detail is great and price point is well worth it when compared to other companies with lock in contracts that just don't provide the value Van does.",
-    },
-    {
-        id: "rosemary-fung",
-        name: "Rosemary Fung",
-        business: "Cleana Carpets",
-        caseStudy: "cleana-carpets",
-        services: ["facebook-ads"],
-        featured: true,
-        rating: 5,
-        source: "Google",
-        text: "Highly recommend this little company. Van took over our advertising 8 months ago couldn't be happier always available to make changes and makes it his business to understand yours.",
-    },
-    {
-        id: "tnbquan",
-        name: "TnbQuan",
-        services: ["facebook-ads"],
-        featured: true,
-        rating: 5,
-        source: "Google",
-        text: "Van was super professional and the campaign creative he made me honestly blew me away, I'm fully booked out as well would highly recommend 👍",
-    },
-    {
-        id: "munya-johnstone",
-        name: "Munya Johnstone",
-        // TODO(van): confirm Munya is the All Pro Pressure Washing client before linking the case study.
-        services: ["facebook-ads"],
-        rating: 5,
-        source: "Google",
-        text: "I would highly recommend Webb Media to anyone looking to run Facebook ads. Van has done a fantastic job creating high-quality, engaging video creatives for my business. Super professional, easy to work with, and the results speak for themselves",
-    },
-    {
-        id: "andrew-noble-bathrooms",
-        name: "Andrew",
-        business: "Noble Bathrooms",
-        services: ["websites"],
-        rating: 5,
-        source: "Google",
-        text: "Excellent work, great service and very professional. Thank you to Van and the team. I loved the effort put into the initial design, before they even charged any money, highly recommended.",
-    },
-    {
-        id: "isaac-hill",
-        name: "Isaac Hill",
-        services: ["websites"],
-        rating: 5,
-        source: "Google",
-        text: "We had a really great experience with Webb Media. They built us a fantastic website. Made all of my ideas and wishes come true. Highly recommend for any media, marketing or web development. Thank you Webb team.",
-    },
-    {
-        id: "christian-greenhalgh",
-        name: "Christian Greenhalgh",
-        // TODO(van): is this Christian from Reset Exterior Cleaning? If so add business + caseStudy.
-        services: ["facebook-ads"],
-        rating: 5,
-        source: "Google",
-        text: "Provides good quality leads through meta ads and is motivated to always push for growth and quality",
-    },
-    {
-        id: "jack-young",
-        name: "Jack Young",
-        services: ["websites", "facebook-ads"],
-        rating: 5,
-        source: "Google",
-        text: "Van from Webb media has been great to deal with, super friendly, knowledgeable and reasonably priced. His website designs and marketing skills are 10/10. Highly recommend",
-    },
-    {
-        id: "giulio-rocco",
-        name: "Giulio Rocco",
-        services: [],
-        rating: 5,
-        source: "Google",
-        text: "Excellent service and incredibly easy to work with. Highly recommend to anyone looking to grow their digital presence.",
-    },
-    {
-        id: "ben-mcgaughran",
-        name: "Ben McGaughran",
-        services: ["websites"],
-        rating: 5,
-        source: "Google",
-        text: "Van was extremely knowledgable around websites and marketing, Highly recommend him!",
-    },
-    {
-        id: "david-forgan",
-        name: "David Forgan",
-        services: [],
-        rating: 5,
-        source: "Google",
-        text: "Web Media were great to deal with and im very happy with the results",
-    },
-    {
-        id: "waheeb-irshad",
-        name: "Waheeb Irshad",
-        services: [],
-        rating: 5,
-        source: "Google",
-        text: "Had a great meeting with Van, very knowledgeable bloke and offered amazing packages! Look forward to working with Van from Webb Media soon!",
-    },
-];
+interface Tag {
+    services: Service[];
+    business?: string;
+    caseStudy?: string;
+    featured?: boolean;
+}
 
-export const REVIEW_COUNT = REVIEWS.length;
-export const AVERAGE_RATING = REVIEWS.reduce((sum, r) => sum + r.rating, 0) / REVIEWS.length;
+/** Labels per reviewer, keyed by their Google display name. New reviews show up untagged until added here. */
+const TAGS: Record<string, Tag> = {
+    "Hogan Radic": { services: ["facebook-ads"], business: "Clean Coast Pressure Washing", caseStudy: "clean-coast-pressure-washing", featured: true },
+    "Louie Smeulders": { services: ["facebook-ads"], business: "Mobile Mates Detailing", caseStudy: "mobile-mates-detailing", featured: true },
+    "Anthony Gibb": { services: ["facebook-ads"], business: "Richie's Painting Service", caseStudy: "richies-painting", featured: true },
+    "Sam Hoffensetz": { services: ["facebook-ads", "coaching"], business: "CAF Pressure Washing", caseStudy: "caf-pressure-washing", featured: true },
+    "John Sav": { services: ["websites"], featured: true },
+    Shaun: { services: ["facebook-ads", "websites"], featured: true },
+    "Eddie Phillips": { services: ["websites"], featured: true },
+    "Rosemary Fung": { services: ["facebook-ads"], business: "Cleana Carpets", caseStudy: "cleana-carpets", featured: true },
+    TnbQuan: { services: ["facebook-ads"], featured: true },
+    // TODO(van): confirm Munya is the All Pro Pressure Washing client, then add business + caseStudy.
+    "Munya Johnstone": { services: ["facebook-ads"] },
+    Andrew: { services: ["websites"], business: "Noble Bathrooms" },
+    "Isaac Hill": { services: ["websites"] },
+    // TODO(van): is this Christian from Reset Exterior Cleaning?
+    "Christian Greenhalgh": { services: ["facebook-ads"] },
+    "Jack Young": { services: ["websites", "facebook-ads"] },
+    "Giulio Rocco": { services: [] },
+    "Ben McGaughran": { services: ["websites"] },
+    "David Forgan": { services: [] },
+    "Waheeb Irshad": { services: [] },
+};
+
+const slug = (s: string) =>
+    s
+        .toLowerCase()
+        .normalize("NFKD")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
+
+interface SyncedReview {
+    name: string;
+    rating: number;
+    text: string;
+    createTime: string | null;
+    reply: string | null;
+}
+
+const seen = new Set<string>();
+const withText = (synced.reviews as SyncedReview[]).filter((r) => r.text && r.text.trim().length > 0);
+
+export const REVIEWS: Review[] = withText
+    .map((r) => {
+        let id = slug(r.name) || "review";
+        while (seen.has(id)) id += "-2";
+        seen.add(id);
+        const tag = TAGS[r.name] ?? { services: [] };
+        return { id, name: r.name, text: r.text, rating: r.rating, source: "Google" as const, createTime: r.createTime, reply: r.reply, ...tag };
+    })
+    // Newest first when dates are known; the seed has no dates and keeps its order.
+    .sort((a, b) => (b.createTime ?? "").localeCompare(a.createTime ?? ""));
+
+/** Total on Google, including star-only ratings with no written review. */
+export const REVIEW_COUNT: number = synced.totalReviewCount;
+export const AVERAGE_RATING: number = synced.averageRating;
+export const REVIEWS_SYNCED_AT: string = synced.syncedAt;
+/** e.g. "November 2026" */
+export const REVIEWS_SYNCED_LABEL = new Date(synced.syncedAt).toLocaleDateString("en-AU", { month: "long", year: "numeric", timeZone: "Australia/Brisbane" });
+/** True when every written review shown is five stars. Copy that says "all five stars" checks this. */
+export const ALL_FIVE_STAR = REVIEWS.every((r) => r.rating === 5);
 
 export const reviewsFor = (service: Service) => REVIEWS.filter((r) => r.services.includes(service));
 export const reviewById = (id: string) => REVIEWS.find((r) => r.id === id);
 
+/** Featured reviews for the home page; falls back to the newest if none are tagged. */
+export const FEATURED_REVIEWS: Review[] = (() => {
+    const tagged = REVIEWS.filter((r) => r.featured);
+    return tagged.length >= 3 ? tagged : REVIEWS.slice(0, 9);
+})();
+
+/** Cuts a review at a word boundary and marks the cut with an ellipsis (never rewrites it). */
+export const excerpt = (text: string, max = 320) => {
+    if (text.length <= max) return text;
+    const cut = text.slice(0, max);
+    return cut.slice(0, cut.lastIndexOf(" ")).replace(/[,.;:!\s]+$/, "") + "…";
+};
+
 /** Short pull quotes, each a verbatim fragment of a review above, for the "why clients rate us" section. */
-export const THEMES: { title: string; body: string; quotes: { reviewId: string; text: string }[] }[] = [
+const RAW_THEMES: { title: string; body: string; quotes: { reviewId: string; text: string }[] }[] = [
     {
         title: "You deal with Van directly",
         body: "No account managers or junior staff. The person who sells you the work is the person who does it, and clients keep mentioning it.",
@@ -242,3 +155,12 @@ export const THEMES: { title: string; body: string; quotes: { reviewId: string; 
         ],
     },
 ];
+
+/** Themes with their quotes, skipping any quote whose review is no longer on Google. */
+export const THEMES = RAW_THEMES.map((t) => ({
+    ...t,
+    quotes: t.quotes.flatMap((q) => {
+        const review = reviewById(q.reviewId);
+        return review && review.text.includes(q.text) ? [{ ...q, review }] : [];
+    }),
+})).filter((t) => t.quotes.length > 0);

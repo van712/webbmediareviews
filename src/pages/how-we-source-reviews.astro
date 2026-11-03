@@ -1,0 +1,45 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { BUSINESS, GOOGLE_REVIEWS_URL } from "../data/site";
+import { REVIEWS_SYNCED_LABEL } from "../data/reviews";
+import { breadcrumbLd } from "../lib/schema";
+
+const crumbs = [{ name: "How reviews are sourced", path: "/how-we-source-reviews/" }];
+---
+
+<Base
+    title="How Webb Media Reviews Are Sourced | Editorial Policy"
+    description="Who runs this site, where every Webb Media review comes from, and why none of them are edited, filtered or paid for."
+    schema={[breadcrumbLd(crumbs)]}
+>
+    <PageHero eyebrow="Transparency" title="How reviews on this site are sourced" crumbs={crumbs} />
+    <section class="section">
+        <div class="wrap prose">
+            <h2>Who runs this site</h2>
+            <p>
+                webbmediareviews.com.au is owned and run by <a href={BUSINESS.mainSite}>Webb Media</a> (ABN {BUSINESS.abn}). It collects the public reviews, video
+                testimonials and results from Webb Media's clients in one place.
+            </p>
+            <h2>Where the reviews come from</h2>
+            <ul>
+                <li>
+                    <strong>Written reviews</strong> are pulled from Webb Media's public <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener">Google Business Profile</a>,
+                    last synced {REVIEWS_SYNCED_LABEL}.
+                </li>
+                <li><strong>Video testimonials</strong> are the clients' own videos, published on YouTube and Instagram.</li>
+                <li><strong>Results</strong> in the case studies come from Meta Ads Manager, website analytics and messages clients sent, shown as screenshots where we have them.</li>
+            </ul>
+            <h2>The rules</h2>
+            <ul>
+                <li>Reviews are copied word for word. Spelling and typos are left as written.</li>
+                <li>Every written review on Google is shown, whatever its star rating. None are hidden or filtered.</li>
+                <li>No review is written, edited or paid for, and no one is offered anything in exchange for a review.</li>
+                <li>Quotes are only used if the client wrote or said them publicly, or agreed to them being shared.</li>
+                <li>If you're a client and want something changed or removed, email <a href={BUSINESS.emailHref}>{BUSINESS.email}</a>.</li>
+            </ul>
+        </div>
+    </section>
+    <CtaBand />
+</Base>

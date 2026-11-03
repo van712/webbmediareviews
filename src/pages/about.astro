@@ -8,7 +8,7 @@ import { reviewById, REVIEW_COUNT } from "../data/reviews";
 import { breadcrumbLd } from "../lib/schema";
 
 const crumbs = [{ name: "About Van", path: "/about/" }];
-const hogan = reviewById("hogan-radic")!;
+const hogan = reviewById("hogan-radic");
 
 const person = {
     "@context": "https://schema.org",
@@ -60,7 +60,7 @@ const person = {
         </div>
     </section>
 
-    <section class="section">
+    {hogan && <section class="section">
         <div class="wrap narrow">
             <div class="section-head">
                 <span class="eyebrow">In a client's words</span>
@@ -68,7 +68,7 @@ const person = {
             </div>
             <ReviewCard review={hogan} />
         </div>
-    </section>
+    </section>}
 
     <CtaBand />
 </Base>

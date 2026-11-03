@@ -1,5 +1,5 @@
 ---
-import { BUSINESS, SOCIALS, NAV, GOOGLE_REVIEWS_URL, BOOK_CALL_URL } from "../data/site";
+import { BUSINESS, SOCIALS, NAV, GOOGLE_REVIEWS_URL } from "../data/site";
 const year = new Date().getFullYear();
 ---
 
@@ -14,7 +14,7 @@ const year = new Date().getFullYear();
                 Real reviews, testimonials and results from clients of <a href={BUSINESS.mainSite}>Webb Media</a>, the Facebook ads and web design agency for
                 Australian tradies run by {BUSINESS.founder}.
             </p>
-            <p class="small muted">This site is owned and run by Webb Media. Reviews are copied word for word from Google, and every one links back to the original.</p>
+            <p class="small muted">This site is owned and run by Webb Media. Reviews are copied word for word from Google and every one links back to the original. <a href="/how-we-source-reviews/">How reviews are sourced</a>.</p>
         </div>
         <div>
             <h2 class="h">Explore</h2>
@@ -28,7 +28,7 @@ const year = new Date().getFullYear();
         <div>
             <h2 class="h">Webb Media</h2>
             <ul>
-                <li><a href={BOOK_CALL_URL}>webbmedia.com.au</a></li>
+                <li><a href={BUSINESS.mainSite}>webbmedia.com.au</a></li>
                 <li><a href={BUSINESS.phoneHref}>{BUSINESS.phone}</a></li>
                 <li><a href={BUSINESS.emailHref}>{BUSINESS.email}</a></li>
                 <li class="muted">ABN {BUSINESS.abn}</li>

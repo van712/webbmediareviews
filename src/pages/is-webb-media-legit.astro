@@ -3,8 +3,8 @@ import Base from "../layouts/Base.astro";
 import PageHero from "../components/PageHero.astro";
 import CtaBand from "../components/CtaBand.astro";
 import Faq from "../components/Faq.astro";
-import { BUSINESS, GOOGLE_REVIEWS_URL, SOCIALS, REVIEWS_LAST_SYNCED } from "../data/site";
-import { REVIEW_COUNT } from "../data/reviews";
+import { BUSINESS, GOOGLE_REVIEWS_URL, SOCIALS } from "../data/site";
+import { REVIEW_COUNT, REVIEWS, ALL_FIVE_STAR, REVIEWS_SYNCED_LABEL } from "../data/reviews";
 import { CASE_STUDIES } from "../data/case-studies";
 import { breadcrumbLd, faqLd } from "../lib/schema";
 
@@ -16,11 +16,11 @@ const faq = [
     },
     {
         q: "Are the reviews real?",
-        a: `Yes. All ${REVIEW_COUNT} written reviews on this site are copied word for word from Webb Media's public Google Business Profile, last synced ${REVIEWS_LAST_SYNCED}. You can <a href="${GOOGLE_REVIEWS_URL}" target="_blank" rel="noopener">read them on Google</a> yourself.`,
+        a: `Yes. All ${REVIEWS.length} written reviews on this site are copied word for word from Webb Media's public Google Business Profile, last synced ${REVIEWS_SYNCED_LABEL}. You can <a href="${GOOGLE_REVIEWS_URL}" target="_blank" rel="noopener">read them on Google</a> yourself.`,
     },
     {
         q: "Can I talk to Van before I commit to anything?",
-        a: `Yes. Book a free 15 minute call at <a href="${BUSINESS.mainSite}">webbmedia.com.au</a>, call ${BUSINESS.phone} or email <a href="${BUSINESS.emailHref}">${BUSINESS.email}</a>. You'll speak with Van directly.`,
+        a: `Yes. Van takes calls himself on ${BUSINESS.phone}, or email <a href="${BUSINESS.emailHref}">${BUSINESS.email}</a>. More at <a href="${BUSINESS.mainSite}">webbmedia.com.au</a>.`,
     },
     {
         q: "Can I see proof of results?",
@@ -37,7 +37,7 @@ const faq = [
     <PageHero
         eyebrow="Do your homework"
         title="Is Webb Media legit?"
-        lead="Fair question to ask before you hand anyone your marketing. Here's everything you can check for yourself, without taking our word for it."
+        lead="A fair question to ask before you hand anyone your marketing. Here's everything you can check for yourself."
         crumbs={crumbs}
     />
 
@@ -50,7 +50,7 @@ const faq = [
                 </div>
                 <div class="card">
                     <h2>{REVIEW_COUNT} public Google reviews</h2>
-                    <p class="muted">All five stars, all from named clients. <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener">Check them on Google</a> or <a href="/reviews/">read them here</a>.</p>
+                    <p class="muted">{ALL_FIVE_STAR ? "All five stars, all" : "All"} from named clients. <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener">Check them on Google</a> or <a href="/reviews/">read them here</a>.</p>
                 </div>
                 <div class="card">
                     <h2>Results with screenshots</h2>
@@ -74,7 +74,7 @@ const faq = [
         </div>
     </section>
 
-    <CtaBand title="Still unsure? Talk to Van." />
+    <CtaBand />
 </Base>
 
 <style>

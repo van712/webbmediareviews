@@ -1,5 +1,5 @@
 ---
-import { NAV, BOOK_CALL_URL } from "../data/site";
+import { NAV, GOOGLE_REVIEWS_URL } from "../data/site";
 const path = Astro.url.pathname;
 ---
 
@@ -25,7 +25,7 @@ const path = Astro.url.pathname;
                         ))
                     }
                     <li class="cta-li">
-                        <a class="btn btn-primary" href={BOOK_CALL_URL}>Work with Webb Media</a>
+                        <a class="btn btn-ghost" href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener">Reviews on Google ↗</a>
                     </li>
                 </ul>
             </details>

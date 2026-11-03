@@ -39,10 +39,6 @@ export const GOOGLE_REVIEWS_URL = "https://share.google/ckcjNuMsZhAlBhXVQ";
  */
 export const GOOGLE_WRITE_REVIEW_URL = GOOGLE_REVIEWS_URL;
 
-/** Where the review text was last copied from Google. Update when re-syncing reviews. */
-export const REVIEWS_LAST_SYNCED = "October 2026";
-
-export const BOOK_CALL_URL = "https://www.webbmedia.com.au/";
 
 export const SOCIALS = [
     { label: "Instagram", href: "https://www.instagram.com/webbmedia.com.au/" },

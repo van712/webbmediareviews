@@ -1,0 +1,34 @@
+name: Sync Google reviews
+
+on:
+  schedule:
+    - cron: "17 19 * * *" # daily, ~5am Brisbane time
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Pull reviews from Google Business Profile
+        run: node scripts/sync-google-reviews.mjs
+        env:
+          GBP_CLIENT_ID: ${{ secrets.GBP_CLIENT_ID }}
+          GBP_CLIENT_SECRET: ${{ secrets.GBP_CLIENT_SECRET }}
+          GBP_REFRESH_TOKEN: ${{ secrets.GBP_REFRESH_TOKEN }}
+          GBP_ACCOUNT_ID: ${{ secrets.GBP_ACCOUNT_ID }}
+          GBP_LOCATION_ID: ${{ secrets.GBP_LOCATION_ID }}
+      - name: Commit if changed
+        run: |
+          if git diff --quiet src/data/google-reviews.json; then echo "No new reviews"; exit 0; fi
+          git config user.name "reviews-sync"
+          git config user.email "reviews-sync@users.noreply.github.com"
+          git add src/data/google-reviews.json
+          git commit -m "Sync Google reviews"
+          git push

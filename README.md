@@ -16,20 +16,31 @@ npm run build      # outputs to dist/
 
 | What | File |
 |---|---|
-| Google reviews (verbatim only) | `src/data/reviews.ts` |
+| Google reviews (synced, verbatim) | `src/data/google-reviews.json` |
+| Review labels (service, business, case study) | `src/data/reviews.ts` |
 | Case studies / results | `src/data/case-studies.ts` |
 | Contact details, links, nav | `src/data/site.ts` |
 | FAQ copy | `src/data/faq.ts` |
 | Pages | `src/pages/` |
 | Styles (brand colours, fonts) | `src/styles/global.css` |
 
-### Adding a new Google review
+### Google reviews sync
 
-1. Copy the review **word for word** into `REVIEWS` in `src/data/reviews.ts` (keep typos).
-2. Tag its `services`, and add `business` / `caseStudy` if you know them for sure.
-3. Update `REVIEWS_LAST_SYNCED` in `src/data/site.ts`.
-4. Push. Vercel redeploys automatically. The review count updates everywhere, apart from the share image (step 5).
-5. If the count changed, update the number in `scripts/og-image.html` and run `node scripts/shots.mjs` (with `npm run preview` running) to regenerate the share image.
+Reviews come from the Google Business Profile API and update automatically:
+
+- `scripts/sync-google-reviews.mjs` pulls every review, word for word, into `src/data/google-reviews.json`.
+- `.github/workflows/sync-reviews.yml` runs it daily. If anything changed it commits the file, and Vercel redeploys. Counts, averages and dates update everywhere on the site.
+- To label a new review (which service, which business, which case study), add the reviewer's Google display name to `TAGS` in `src/data/reviews.ts`. Untagged reviews still show; they just have no labels.
+
+One-time setup (the Google side):
+
+1. In Google Cloud, create a project and request **Google Business Profile API** access (Google approves it, usually within a few days). Then enable the *My Business Account Management*, *My Business Business Information* and *Google My Business* APIs.
+2. Create an OAuth client (type "Web application", redirect URI `https://developers.google.com/oauthplayground`).
+3. In the [OAuth Playground](https://developers.google.com/oauthplayground), tick "Use your own OAuth credentials", authorise the scope `https://www.googleapis.com/auth/business.manage` with the Google account that manages the profile, and exchange for a **refresh token**.
+4. Find the IDs: `GBP_CLIENT_ID=… GBP_CLIENT_SECRET=… GBP_REFRESH_TOKEN=… node scripts/sync-google-reviews.mjs --list`
+5. Add the 5 values as GitHub repo secrets: `GBP_CLIENT_ID`, `GBP_CLIENT_SECRET`, `GBP_REFRESH_TOKEN`, `GBP_ACCOUNT_ID`, `GBP_LOCATION_ID`. Then run the workflow once from the Actions tab.
+
+Until that's set up, reviews can be added by hand to `google-reviews.json` (word for word).
 
 ### Adding images
 

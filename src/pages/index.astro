@@ -7,26 +7,26 @@ import VideoCard from "../components/VideoCard.astro";
 import Faq from "../components/Faq.astro";
 import CtaBand from "../components/CtaBand.astro";
 import Stars from "../components/Stars.astro";
-import { REVIEWS, REVIEW_COUNT, THEMES, reviewById } from "../data/reviews";
+import { REVIEWS, FEATURED_REVIEWS, REVIEW_COUNT, AVERAGE_RATING, ALL_FIVE_STAR, THEMES, reviewById, excerpt } from "../data/reviews";
 import { CASE_STUDIES, FEATURED_CASE_SLUGS, VIDEO_TESTIMONIALS, caseStudyBySlug } from "../data/case-studies";
 import { HOME_FAQ } from "../data/faq";
 import { faqLd } from "../lib/schema";
 
-const featuredReviews = REVIEWS.filter((r) => r.featured);
+const featuredReviews = FEATURED_REVIEWS;
 const featuredCases = FEATURED_CASE_SLUGS.map((s) => caseStudyBySlug(s)!);
-const hero = reviewById("louie-smeulders")!;
+const hero = reviewById("louie-smeulders") ?? FEATURED_REVIEWS[0];
 
 const stats = [
     { value: "88.6x", label: "return on ad spend for RKS Renovations" },
     { value: "$30K/mo", label: "added revenue for Pristine Pressure Washing" },
     { value: "$1.1M", label: "in quotes from BrisBathCo's new website" },
-    { value: `${REVIEW_COUNT} × 5★`, label: "Google reviews, every one five stars" },
+    { value: `${AVERAGE_RATING.toFixed(1)}★`, label: `average from ${REVIEW_COUNT} Google reviews${ALL_FIVE_STAR ? ", every one five stars" : ""}` },
 ];
 ---
 
 <Base
-    title="Webb Media Reviews | 5-Star Client Reviews, Testimonials & Results"
-    description={`Read ${REVIEW_COUNT} five-star Webb Media reviews from Australian tradies, plus video testimonials and real results from Facebook ads and websites built by Van Topham.`}
+    title={`Webb Media Reviews | ${ALL_FIVE_STAR ? "5-Star " : ""}Client Reviews, Testimonials & Results`}
+    description={`Read ${REVIEW_COUNT}${ALL_FIVE_STAR ? " five-star" : ""} Webb Media reviews from Australian tradies, plus video testimonials and real results from Facebook ads and websites built by Van Topham.`}
     schema={[faqLd(HOME_FAQ)]}
 >
     <section class="hero">
@@ -40,19 +40,27 @@ const stats = [
                 </p>
                 <RatingBadge />
                 <div class="btn-row cta">
-                    <a class="btn btn-primary" href="/reviews/">Read all {REVIEW_COUNT} reviews</a>
+                    <a class="btn btn-primary" href="/reviews/">Read all {REVIEWS.length} reviews</a>
                     <a class="btn btn-ghost" href="/case-studies/">See client results</a>
                 </div>
             </div>
-            <figure class="card hero-quote">
-                <Stars size={22} />
-                <blockquote>“{hero.text.split(", if your")[0]}…”</blockquote>
-                <figcaption>
-                    <strong>{hero.name}</strong>
-                    <span class="muted">{hero.business}</span>
-                </figcaption>
-                <a class="chip chip-red" href={`/case-studies/${hero.caseStudy}/`}>Booked out in 2 weeks →</a>
-            </figure>
+            {
+                hero && (
+                    <figure class="card hero-quote">
+                        <Stars size={22} rating={hero.rating} />
+                        <blockquote>“{excerpt(hero.text)}”</blockquote>
+                        <figcaption>
+                            <strong>{hero.name}</strong>
+                            {hero.business && <span class="muted">{hero.business}</span>}
+                        </figcaption>
+                        {hero.caseStudy && (
+                            <a class="chip chip-red" href={`/case-studies/${hero.caseStudy}/`}>
+                                See the results →
+                            </a>
+                        )}
+                    </figure>
+                )
+            }
         </div>
     </section>
 
@@ -80,7 +88,7 @@ const stats = [
                 {featuredReviews.map((review) => <ReviewCard review={review} />)}
             </div>
             <div class="btn-row center">
-                <a class="btn btn-ghost" href="/reviews/">See all {REVIEW_COUNT} Webb Media reviews</a>
+                <a class="btn btn-ghost" href="/reviews/">See all {REVIEWS.length} Webb Media reviews</a>
             </div>
         </div>
     </section>
@@ -122,7 +130,7 @@ const stats = [
         <div class="wrap">
             <div class="section-head">
                 <span class="eyebrow">Why clients rate Webb Media</span>
-                <h2>The same four things come up again and again</h2>
+                <h2>What clients bring up again and again</h2>
             </div>
             <div class="grid grid-2">
                 {
@@ -130,17 +138,14 @@ const stats = [
                         <div class="card theme">
                             <h3>{theme.title}</h3>
                             <p class="muted">{theme.body}</p>
-                            {theme.quotes.map((q) => {
-                                const r = reviewById(q.reviewId)!;
-                                return (
-                                    <blockquote>
-                                        “{q.text}”
-                                        <cite>
-                                            <a href={`/reviews/#${r.id}`}>{r.name}</a>
-                                        </cite>
-                                    </blockquote>
-                                );
-                            })}
+                            {theme.quotes.map((q) => (
+                                <blockquote>
+                                    “{q.text}”
+                                    <cite>
+                                        <a href={`/reviews/#${q.review.id}`}>{q.review.name}</a>
+                                    </cite>
+                                </blockquote>
+                            ))}
                         </div>
                     ))
                 }

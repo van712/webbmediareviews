@@ -1,12 +1,16 @@
 ---
-import { BOOK_CALL_URL } from "../data/site";
+/**
+ * Closing band on every page. Deliberately not a sales pitch: it points
+ * readers to the original sources so they can verify everything themselves.
+ */
+import { BUSINESS, GOOGLE_REVIEWS_URL } from "../data/site";
 interface Props {
     title?: string;
     body?: string;
 }
 const {
-    title = "Want results like these?",
-    body = "Book a free 15 minute call with Van. No sales team, no pressure. He'll look at your business and tell you straight if Webb Media can help.",
+    title = "Don't just take this page's word for it",
+    body = "Every review here is public. Read them on Google, check the ABN on the Australian Business Register, or look at the live websites in the case studies.",
 } = Astro.props;
 ---
 
@@ -18,8 +22,8 @@ const {
                 <p class="lead">{body}</p>
             </div>
             <div class="btn-row">
-                <a class="btn btn-primary" href={BOOK_CALL_URL}>Book a free call</a>
-                <a class="btn btn-ghost" href="/reviews/">Read more reviews</a>
+                <a class="btn btn-primary" href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener">Read the reviews on Google</a>
+                <a class="btn btn-ghost" href={BUSINESS.mainSite}>Visit webbmedia.com.au</a>
             </div>
         </div>
     </div>
@@ -33,9 +37,9 @@ const {
         grid-template-columns: 1.6fr auto;
         padding: clamp(28px, 5vw, 56px);
         border-radius: 24px;
-        border: 1px solid rgb(221 40 40 / 0.35);
+        border: 1px solid var(--border);
         background:
-            radial-gradient(120% 140% at 0% 0%, rgb(221 40 40 / 0.22), transparent 60%),
+            radial-gradient(120% 140% at 0% 0%, rgb(221 40 40 / 0.14), transparent 60%),
             var(--surface);
     }
     .band h2 {
