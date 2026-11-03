@@ -7,7 +7,7 @@
  *
  * Env (GitHub repo secrets):
  *   GBP_CLIENT_ID, GBP_CLIENT_SECRET, GBP_REFRESH_TOKEN  OAuth for the Google account that manages the profile
- *   GBP_ACCOUNT_ID, GBP_LOCATION_ID                      numeric IDs (run with --list to find them)
+ *   GBP_ACCOUNT_ID, GBP_LOCATION_ID                      optional: found automatically (the location titled "Webb Media")
  *
  * Usage:
  *   node scripts/sync-google-reviews.mjs          sync reviews
@@ -61,8 +61,24 @@ async function list(token) {
     }
 }
 
+/** Uses GBP_ACCOUNT_ID / GBP_LOCATION_ID if set, otherwise finds the "Webb Media" location. */
+async function findLocation(token) {
+    if (process.env.GBP_ACCOUNT_ID && process.env.GBP_LOCATION_ID) return { account: process.env.GBP_ACCOUNT_ID, location: process.env.GBP_LOCATION_ID };
+    const { accounts = [] } = await get("https://mybusinessaccountmanagement.googleapis.com/v1/accounts", token);
+    const found = [];
+    for (const a of accounts) {
+        const { locations = [] } = await get(`https://mybusinessbusinessinformation.googleapis.com/v1/${a.name}/locations?readMask=name,title`, token);
+        for (const l of locations) found.push({ account: a.name.split("/")[1], location: l.name.split("/")[1], title: l.title });
+    }
+    const pick = found.find((l) => /webb\s*media/i.test(l.title)) ?? (found.length === 1 ? found[0] : null);
+    if (!pick) throw new Error(`Couldn't pick a location. Found: ${JSON.stringify(found)}. Set GBP_ACCOUNT_ID and GBP_LOCATION_ID.`);
+    console.log(`Using location "${pick.title}" (account ${pick.account}, location ${pick.location}).`);
+    return pick;
+}
+
 async function sync(token) {
-    const base = `https://mybusiness.googleapis.com/v4/accounts/${env("GBP_ACCOUNT_ID")}/locations/${env("GBP_LOCATION_ID")}/reviews`;
+    const { account, location } = await findLocation(token);
+    const base = `https://mybusiness.googleapis.com/v4/accounts/${account}/locations/${location}/reviews`;
     const reviews = [];
     let pageToken = "";
     let averageRating = 0;

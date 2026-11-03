@@ -35,10 +35,9 @@ Reviews come from the Google Business Profile API and update automatically:
 One-time setup (the Google side):
 
 1. In Google Cloud, create a project and request **Google Business Profile API** access (Google approves it, usually within a few days). Then enable the *My Business Account Management*, *My Business Business Information* and *Google My Business* APIs.
-2. Create an OAuth client (type "Web application", redirect URI `https://developers.google.com/oauthplayground`).
+2. On the OAuth consent screen, set the app to **In production**, not Testing. In Testing mode the refresh token expires after 7 days and the sync stops. Then create an OAuth client (type "Web application", redirect URI `https://developers.google.com/oauthplayground`).
 3. In the [OAuth Playground](https://developers.google.com/oauthplayground), tick "Use your own OAuth credentials", authorise the scope `https://www.googleapis.com/auth/business.manage` with the Google account that manages the profile, and exchange for a **refresh token**.
-4. Find the IDs: `GBP_CLIENT_ID=… GBP_CLIENT_SECRET=… GBP_REFRESH_TOKEN=… node scripts/sync-google-reviews.mjs --list`
-5. Add the 5 values as GitHub repo secrets: `GBP_CLIENT_ID`, `GBP_CLIENT_SECRET`, `GBP_REFRESH_TOKEN`, `GBP_ACCOUNT_ID`, `GBP_LOCATION_ID`. Then run the workflow once from the Actions tab.
+4. Add 3 GitHub repo secrets: `GBP_CLIENT_ID`, `GBP_CLIENT_SECRET` and `GBP_REFRESH_TOKEN`. The script finds the "Webb Media" location by itself. (`GBP_ACCOUNT_ID` and `GBP_LOCATION_ID` are optional overrides.) Then run the workflow once from the Actions tab.
 
 Until that's set up, reviews can be added by hand to `google-reviews.json` (word for word).
 
