@@ -524,7 +524,26 @@ export const CASE_STUDIES: CaseStudy[] = [
 
 /** Other website builds, shown as a portfolio strip (no outcome data yet). */
 /** Other website builds, shown in the website portfolio (no case study yet). */
-export const OTHER_BUILDS: { company: string; note: string; url: string; image?: string; quote?: { text: string; author: string; date: string }; reviewId?: string }[] = [];
+export const OTHER_BUILDS: { company: string; note: string; url: string; image?: string; quote?: { text: string; author: string; date: string }; reviewId?: string }[] = [
+    {
+        company: "CJM Lawn Care",
+        note: "Website for a lawn care and outdoor maintenance business, live September 2026.",
+        url: "https://cjmoutdoorsolutions.com.au/",
+        reviewId: "jessica-vella",
+        quote: { text: "The website looks great thank you!", author: "Jess, CJM Lawn Care", date: "2026-09-15" },
+    },
+    {
+        company: "Maroochydore Tiling",
+        note: "Website for a Sunshine Coast tiler, live June 2026.",
+        url: "https://maroochydoretiling.com.au/",
+        quote: { text: "Website looks great, love it.", author: "Paul, Maroochydore Tiling", date: "2026-06-10" },
+    },
+    {
+        company: "Kisses Detailing",
+        note: "Website for a car detailing business.",
+        url: "https://www.kissesdetailing.com/",
+    },
+];
 
 export const caseStudyBySlug = (slug: string) => CASE_STUDIES.find((c) => c.slug === slug);
 export const FEATURED_CASE_SLUGS = ["cleana-carpets", "pristine-pressure-washing", "rks-renovations", "brisbathco", "clean-coast-pressure-washing", "wild-landscape-co"];
