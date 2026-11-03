@@ -31,6 +31,8 @@ export interface CaseStudy {
     reviewId?: string;
     video?: { url: string; youtubeId?: string; platform: "YouTube" | "Instagram" };
     mainSiteUrl: string;
+    /** Lifetime numbers read straight from the client's Meta Ads Manager account. */
+    adsManager?: { asOf: string; items: { label: string; value: string }[]; note?: string };
 }
 
 const main = (slug: string) => `https://www.webbmedia.com.au/case-studies/${slug}`;
@@ -43,16 +45,16 @@ export const CASE_STUDIES: CaseStudy[] = [
         industry: "Renovations",
         service: "facebook-ads",
         headline: "$42,000 renovation job from $474 in ad spend",
-        stat: "88.6x ROAS",
-        description: "Rabih closed a $42,000 renovation job from $474 in ad spend. That's an 88.6x return.",
+        stat: "$42K job",
+        description: "Rabih closed a $42,000 renovation job from a lead that came in within his first $474 of ad spend.",
         whatWasDone:
             "Meta ads aimed at homeowners planning a proper renovation, not people chasing the cheapest quote. The ads used video walk-throughs of RKS's finished jobs so people could see the standard of work before they enquired.",
         metrics: [
-            { label: "Ad spend", value: "$474" },
-            { label: "Revenue", value: "$42,000" },
-            { label: "Return on spend", value: "88.6x" },
+            { label: "Spend when the job came in", value: "$474" },
+            { label: "Job value", value: "$42,000" },
+            { label: "Leads to date", value: "83" },
         ],
-        highlights: ["$42,000 job from $474 in ad spend", "88.6x return on ad spend", "Video walk-throughs of finished jobs", "Aimed at homeowners with real budgets"],
+        highlights: ["$42,000 job within the first $474 of ad spend", "Video walk-throughs of finished jobs", "Aimed at homeowners with real budgets"],
         logo: "/images/logos/rks-renovations.png",
         proof: [
             { src: "/images/proof/rks-renovations.png", alt: "RKS Renovations Meta Ads Manager results" },
@@ -60,6 +62,7 @@ export const CASE_STUDIES: CaseStudy[] = [
             { src: "/images/proof/messages-rks-renovations-1.jpg", alt: "Message from RKS Renovations to Van" },
         ],
         mainSiteUrl: main("rks-renovations"),
+        adsManager: { asOf: "November 2026", items: [{ label: "Total ad spend", value: "$6,101" }, { label: "Leads", value: "83" }, { label: "Cost per lead", value: "$73.51" }], note: "The $42,000 job came in within the first $474 of spend. The campaign kept running after that." },
     },
     {
         slug: "pristine-pressure-washing",
@@ -86,6 +89,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         ],
         video: { url: "https://www.youtube.com/shorts/ipMNRP0meKE", youtubeId: "ipMNRP0meKE", platform: "YouTube" },
         mainSiteUrl: main("pristine-pressure-washing"),
+        adsManager: { asOf: "November 2026", items: [{ label: "Total ad spend", value: "$8,051" }, { label: "Leads", value: "575" }, { label: "Cost per lead", value: "$14.00" }] },
     },
     {
         slug: "clean-coast-pressure-washing",
@@ -112,6 +116,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         reviewId: "hogan-radic",
         video: { url: "https://www.youtube.com/shorts/XWom9IXqob4", youtubeId: "XWom9IXqob4", platform: "YouTube" },
         mainSiteUrl: main("clean-coast-pressure-washing"),
+        adsManager: { asOf: "November 2026", items: [{ label: "Total ad spend", value: "$3,565" }, { label: "Leads", value: "422" }, { label: "Cost per lead", value: "$8.45" }] },
     },
     {
         slug: "caf-pressure-washing",
@@ -135,6 +140,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         reviewId: "sam-hoffensetz",
         video: { url: "https://www.youtube.com/shorts/5wAWkU_4ZQo", youtubeId: "5wAWkU_4ZQo", platform: "YouTube" },
         mainSiteUrl: main("caf-pressure-washing"),
+        adsManager: { asOf: "November 2026", items: [{ label: "Total ad spend", value: "$1,200" }, { label: "Leads", value: "109" }, { label: "Cost per lead", value: "$11.01" }] },
     },
     {
         slug: "richies-painting",
@@ -161,6 +167,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         reviewId: "anthony-gibb",
         video: { url: "https://www.youtube.com/shorts/_lf9grv7PoA", youtubeId: "_lf9grv7PoA", platform: "YouTube" },
         mainSiteUrl: main("richies-painting"),
+        adsManager: { asOf: "November 2026", items: [{ label: "Ad spend (current account)", value: "$2,511" }, { label: "Leads", value: "120" }, { label: "Cost per lead", value: "$20.92" }], note: "Covers the account running since July 2026." },
     },
     {
         slug: "mobile-mates-detailing",
@@ -192,14 +199,14 @@ export const CASE_STUDIES: CaseStudy[] = [
         client: "Joe",
         industry: "Carpet cleaning",
         service: "facebook-ads",
-        headline: "$77K in revenue from $19K in ad spend, at $10 a lead",
-        stat: "4x ROAS",
-        description: "Cleana Carpets has spent $19,000 on ads with Webb Media and it's brought in $77,000 in revenue. A 4x return at high scale, averaging $10 a lead on $400 jobs.",
+        headline: "4,238 leads at $9 each over ten months of ads",
+        stat: "4,238 leads",
+        description: "Cleana Carpets has had 4,238 leads from Meta ads at $9.19 each. Their first $19,000 of ad spend brought in $77,000 in revenue, a 4x return on $400 average jobs.",
         whatWasDone:
             "Local Meta ads aimed at homes and businesses in the areas Cleana cover, with new creative tested all the time so the ads don't go stale. Leads come through a short form and get followed up fast, which keeps the cost per lead around $10.",
         metrics: [
-            { label: "Ad spend", value: "$19,000" },
-            { label: "Revenue", value: "$77,000" },
+            { label: "First $19K of ad spend", value: "$77,000 revenue" },
+            { label: "Return on that spend", value: "4x" },
             { label: "Cost per lead", value: "$10" },
             { label: "Avg job value", value: "$400" },
         ],
@@ -213,6 +220,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         ],
         reviewId: "rosemary-fung",
         mainSiteUrl: main("cleana-carpets"),
+        adsManager: { asOf: "November 2026", items: [{ label: "Total ad spend", value: "$38,962" }, { label: "Leads", value: "4,238" }, { label: "Phone calls", value: "135" }, { label: "Cost per lead", value: "$9.19" }], note: "Ten months of continuous spend, still running." },
     },
     {
         slug: "iq-pressure-washing",
@@ -263,6 +271,7 @@ export const CASE_STUDIES: CaseStudy[] = [
             { src: "/images/proof/all-pro-pressure-washing-2.png", alt: "All Pro Pressure Washing revenue summary" },
         ],
         mainSiteUrl: main("all-pro-pressure-washing"),
+        adsManager: { asOf: "November 2026", items: [{ label: "Cost per lead, 2024 (before)", value: "$72.64" }, { label: "Cost per lead, 2026 Webb Media campaign", value: "$22.12" }, { label: "Leads in that campaign", value: "145" }] },
     },
     {
         slug: "reset-exterior-cleaning",

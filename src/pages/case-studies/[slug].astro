@@ -59,6 +59,22 @@ const description = `${study.description} Read how Webb Media did it${review ? `
                 <h2>The results</h2>
                 <ul>{study.highlights.map((h) => <li>{h}</li>)}</ul>
                 {
+                    study.adsManager && (
+                        <div class="ads-check">
+                            <h3>Checked in Meta Ads Manager ({study.adsManager.asOf})</h3>
+                            <dl>
+                                {study.adsManager.items.map((i) => (
+                                    <div>
+                                        <dt>{i.label}</dt>
+                                        <dd>{i.value}</dd>
+                                    </div>
+                                ))}
+                            </dl>
+                            {study.adsManager.note && <p class="muted small">{study.adsManager.note}</p>}
+                        </div>
+                    )
+                }
+                {
                     study.siteUrl && (
                         <p>
                             See the live site: <a href={study.siteUrl} target="_blank" rel="noopener">{new URL(study.siteUrl).hostname.replace(/^www\./, "")}</a>
@@ -196,6 +212,38 @@ const description = `${study.description} Read how Webb Media did it${review ? `
     }
     .small {
         font-size: 0.9rem;
+    }
+    .ads-check {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: var(--surface);
+        padding: 20px 22px;
+        margin: 24px 0;
+    }
+    .ads-check h3 {
+        font-size: 0.85rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--subtle);
+        margin-bottom: 14px;
+    }
+    .ads-check dl {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 14px;
+        margin: 0;
+    }
+    .ads-check dt {
+        color: var(--muted);
+        font-size: 0.85rem;
+    }
+    .ads-check dd {
+        margin: 0;
+        font-weight: 800;
+        font-size: 1.3rem;
+    }
+    .ads-check p {
+        margin: 12px 0 0;
     }
     .side {
         display: grid;
