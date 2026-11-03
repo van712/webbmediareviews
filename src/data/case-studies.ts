@@ -425,21 +425,106 @@ export const CASE_STUDIES: CaseStudy[] = [
         siteUrl: "https://fencingsunshinecoast.com.au/",
         mainSiteUrl: main("lindsay-catlin-fencing"),
     },
+    {
+        slug: "euro-chiptuning-solutions",
+        company: "Euro Chiptuning Solutions",
+        client: "John",
+        industry: "Vehicle tuning & security",
+        service: "websites",
+        headline: "125 local service pages across 25 Melbourne suburbs",
+        stat: "125 local pages",
+        description: "A bold site for John's Tullamarine workshop, with its own page for every service in every Melbourne suburb he covers.",
+        whatWasDone:
+            "Built around the brands they fit (IGLA, Compustar, Author Alarm, ImmoTrack and Auto Teknic), with a page for each service in each of 25 Melbourne suburbs, guides for popular vehicles, and a booking form that asks for the car's make, model and year up front so John can quote straight away.",
+        metrics: [
+            { label: "Suburb + service pages", value: "125" },
+            { label: "Melbourne suburbs", value: "25" },
+            { label: "Lighthouse SEO", value: "100/100" },
+        ],
+        highlights: ["A page for every service in every suburb covered", "Vehicle guides for the cars they work on most", "Booking form that captures the car details up front", "Their five-star Google reviews front and centre"],
+        logo: "/images/logos/euro-chip-tuning.jpeg",
+        proof: [],
+        siteImage: "/images/sites/euro-chiptuning.webp",
+        siteUrl: "https://eurochiptuning.com.au/",
+        mainSiteUrl: main("euro-chiptuning-solutions"),
+    },
+    {
+        slug: "igla-australia",
+        company: "IGLA Australia",
+        client: "John",
+        industry: "Vehicle security",
+        service: "websites",
+        headline: "A national site with an installer finder across 7 states",
+        stat: "Australia-wide",
+        description: "A full rebuild of IGLA Australia's site: every product, price and authorised installer in one place, so drivers can go from \"will this work on my car?\" to booking a fit.",
+        whatWasDone:
+            "Carried every page, product, price, FAQ and installer across from the old site and rebuilt it around what buyers need to know: how IGLA stops a car being stolen, which system suits their vehicle, what it costs and who can fit it nearby. It has an installer finder covering 7 states and territories, a side-by-side comparison of the systems and a vehicle compatibility check.",
+        metrics: [
+            { label: "Authorised installers listed", value: "19" },
+            { label: "States & territories", value: "7" },
+            { label: "Systems compared", value: "5" },
+        ],
+        highlights: ["Installer finder searchable by suburb or postcode", "Side-by-side comparison of every IGLA system", "Up-front pricing on the devices", "Old site content and links carried across"],
+        proof: [],
+        siteImage: "/images/sites/igla.webp",
+        siteUrl: "https://www.igla.com.au/",
+        emails: [
+            { text: "Mate, what can I say?! You have absolutely smashed it. I absolutely love it. I appreciate the effort my man!", author: "John, Euro Chiptuning Solutions & IGLA Australia", date: "2026-10-03", subject: "Re: NEW IGLA WEBSITE" },
+            { text: "you seriously nailed the design.", author: "John, Euro Chiptuning Solutions & IGLA Australia", date: "2026-10-03", subject: "Re: NEW IGLA WEBSITE" },
+            { text: "Love your work and dedication.", author: "John, Euro Chiptuning Solutions & IGLA Australia", date: "2026-10-03", subject: "Re: NEW IGLA WEBSITE" },
+        ],
+        mainSiteUrl: main("igla-australia"),
+    },
+    {
+        slug: "chase-create",
+        company: "Chase Create",
+        client: "Chase",
+        industry: "Outdoor building",
+        service: "websites",
+        headline: "108 local pages for a Sunshine Coast outdoor builder",
+        stat: "108 local pages",
+        description: "A premium site for a Sunshine Coast outdoor builder, with a page for every service in every area he works in.",
+        whatWasDone:
+            "Built around Chase's decks, pergolas, retaining walls and custom carpentry, with a page for each service in each of 18 Sunshine Coast and Hinterland areas, cost guides and comparisons that answer what homeowners ask before they call, and a quote form that goes straight to Chase.",
+        metrics: [
+            { label: "Suburb + service pages", value: "108" },
+            { label: "Service areas", value: "18" },
+            { label: "Cost guides & comparisons", value: "7" },
+        ],
+        highlights: ["A page for every service in every area covered", "Cost guides and comparisons that pre-sell the job", "Project pages for their builds", "Quote form that goes straight to Chase"],
+        proof: [],
+        siteImage: "/images/sites/chase-create.webp",
+        siteUrl: "https://chasecreate.com.au/",
+        emails: [{ text: "Thanks mate it looks great.", author: "Chase, Chase Create", date: "2026-06-08", subject: "Re: Website Update" }],
+        mainSiteUrl: main("chase-create"),
+    },
+    {
+        slug: "sdl-creations",
+        company: "SDL Creations",
+        client: "Stephen",
+        industry: "Landscape design",
+        service: "websites",
+        headline: "A cinematic site for an award-winning Sydney landscaper",
+        stat: "23 projects shown",
+        description: "A cinematic, editorial site for an award-winning Sydney landscaper, built to win $150K+ outdoor projects.",
+        whatWasDone:
+            "Led with video of their builds and a write-up for each of 23 projects, backed by their 2025 National Landscape Design Award, Best of Houzz badges and five-star reviews. Every Sydney area they work in gets its own page, and there are two clear paths: book a design consultation or request a construction quote.",
+        metrics: [
+            { label: "Project case studies", value: "23" },
+            { label: "Sydney area pages", value: "12" },
+            { label: "Journal articles", value: "18" },
+        ],
+        highlights: ["A case study page for every major project", "Award and Houzz credentials up front", "A page for every Sydney area they work in", "Separate paths for design and construction enquiries"],
+        proof: [],
+        siteImage: "/images/sites/sdl-creations.webp",
+        siteUrl: "https://sdlcreations.webbdomain.com.au/",
+        mainSiteUrl: main("sdl-creations"),
+    },
 ];
 
 /** Other website builds, shown as a portfolio strip (no outcome data yet). */
-export const OTHER_BUILDS: { company: string; note: string; url: string; image: string; quote?: { text: string; author: string; date: string } }[] = [
-    { company: "Euro Chiptuning Solutions", note: "125 suburb + service pages, Melbourne", url: "https://eurochiptuning.com.au/", image: "/images/sites/euro-chiptuning.webp" },
-    { company: "Chase Create", note: "108 local pages, Sunshine Coast outdoor builder", url: "https://chasecreate.com.au/", image: "/images/sites/chase-create.webp" },
-    { company: "SDL Creations", note: "Award-winning Sydney landscaper", url: "https://sdlcreations.webbdomain.com.au/", image: "/images/sites/sdl-creations.webp" },
-    {
-        company: "IGLA Australia",
-        note: "National vehicle security brand",
-        url: "https://www.igla.com.au/",
-        image: "/images/sites/igla.webp",
-        quote: { text: "Mate, what can I say?! You have absolutely smashed it. I absolutely love it. I appreciate the effort my man!", author: "John, Euro Chiptuning Solutions & IGLA Australia", date: "2026-10-03" },
-    },
-];
+/** Other website builds, shown in the website portfolio (no case study yet). */
+export const OTHER_BUILDS: { company: string; note: string; url: string; image?: string; quote?: { text: string; author: string; date: string }; reviewId?: string }[] = [];
 
 export const caseStudyBySlug = (slug: string) => CASE_STUDIES.find((c) => c.slug === slug);
 export const FEATURED_CASE_SLUGS = ["cleana-carpets", "pristine-pressure-washing", "rks-renovations", "brisbathco", "clean-coast-pressure-washing", "wild-landscape-co"];

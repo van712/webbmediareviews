@@ -46,6 +46,7 @@ export const SOCIALS = [
 export const NAV = [
     { label: "Reviews", href: "/reviews/" },
     { label: "Client results", href: "/case-studies/" },
+    { label: "Websites", href: "/website-portfolio/" },
     { label: "Video testimonials", href: "/video-testimonials/" },
     { label: "About Van", href: "/about/" },
 ];
