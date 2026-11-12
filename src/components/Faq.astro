@@ -43,7 +43,7 @@ const { items } = Astro.props;
     }
     summary::after {
         content: "+";
-        color: var(--red);
+        color: var(--accent);
         font-size: 1.4rem;
         line-height: 1;
     }
@@ -55,6 +55,6 @@ const { items } = Astro.props;
         margin: 0 0 18px;
     }
     p :global(a) {
-        color: #fca5a5;
+        color: var(--accent-text);
     }
 </style>

@@ -165,7 +165,7 @@ const description = `${study.description} Read how Webb Media did it${review ? `
 <style>
     .hero {
         padding-block: clamp(40px, 7vw, 84px) clamp(32px, 5vw, 56px);
-        background: radial-gradient(70% 90% at 50% -20%, rgb(221 40 40 / 0.16), transparent 70%);
+        background: radial-gradient(70% 90% at 50% -20%, rgb(var(--accent-rgb) / 0.16), transparent 70%);
         border-bottom: 1px solid var(--border);
     }
     .head {
@@ -202,7 +202,7 @@ const description = `${study.description} Read how Webb Media did it${review ? `
         display: block;
         font-size: 1.8rem;
         font-weight: 800;
-        color: var(--red);
+        color: var(--accent);
         line-height: 1.1;
     }
     .metric .l {

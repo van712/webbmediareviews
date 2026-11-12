@@ -30,7 +30,7 @@ const { study } = Astro.props;
         transition: border-color 0.15s, transform 0.15s;
     }
     .case:hover {
-        border-color: rgb(221 40 40 / 0.5);
+        border-color: rgb(var(--accent-rgb) / 0.5);
         transform: translateY(-2px);
     }
     .head {
@@ -49,8 +49,8 @@ const { study } = Astro.props;
     .ph {
         display: grid;
         place-items: center;
-        background: var(--red-soft);
-        color: #fca5a5;
+        background: var(--accent-soft);
+        color: var(--accent-text);
         font-weight: 800;
     }
     .company {
@@ -65,7 +65,7 @@ const { study } = Astro.props;
     .stat {
         font-size: 2rem;
         font-weight: 800;
-        color: var(--red);
+        color: var(--accent);
         letter-spacing: -0.02em;
         line-height: 1;
         margin-top: 6px;
@@ -74,7 +74,7 @@ const { study } = Astro.props;
         margin: 0;
         font-size: 1.1rem;
         font-weight: 600;
-        color: #e4e4e7;
+        color: var(--text-2);
     }
     .shot {
         border-radius: 10px;
